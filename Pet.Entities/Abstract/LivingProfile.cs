@@ -1,18 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Pet.Entities.Concrete;
 
 namespace Pet.Entities.Abstract
 {
-    public abstract class LivingProfile : IBaseEntity
+    public abstract class LivingProfile : IBaseEntity, IEntity
     {
-        [Key]
         public int Id { get; set; }
         public string LivingName { get; set; }  //Canlı ismi
-        public string LivingGenus { get; set; } //Cins
-        public string LivingRacial { get; set; }//Irk
+        public int LivingKind { get; set; }
+        public Kind Kind { get; set; }
         public bool LivingGender { get; set; }  //Cinsiyet
         public byte LivingAge { get; set; }
         public int LivingImageId { get; set; }
         public List<LivingImage> LivingsImage { get; set; }
+        public int UserId { get; set; }
+        public User Users { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }

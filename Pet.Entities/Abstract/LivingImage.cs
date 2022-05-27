@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Pet.Entities.Abstract
+﻿namespace Pet.Entities.Abstract
 {
     public abstract class LivingImage : IBaseEntity, IEntity
     {
-        [Key]
         public int Id { get; set; }
-        public byte[] Image { get; set; }
+        public string ImagePath { get; set; }
+        public string Url { get; set; }
+        public string ImageDescription { get; set; }
         public int LivingProfileId { get; set; }
         public virtual LivingProfile LivingProfile { get; set; }
         public DateTime CreateTime { get; set; }
