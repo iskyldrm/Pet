@@ -1,14 +1,10 @@
-﻿using Pet.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Pet.Entities.Abstract
 {
-    public abstract class LivingThing : IBaseEntity
+    public abstract class LivingProfile : IBaseEntity
     {
+        [Key]
         public int Id { get; set; }
         public string LivingName { get; set; }  //Canlı ismi
         public string LivingGenus { get; set; } //Cins

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pet.Entities.Abstract;
 
 namespace Pet.Entities.Concrete
 {
-    public class Cat
+    public class Cat : LivingProfile
     {
     }
 }
