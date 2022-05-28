@@ -1,16 +1,17 @@
-﻿using Pet.Entities.Abstract;
+﻿using Microsoft.AspNetCore.Identity;
+using Pet.Entities.Abstract;
+using Pet.Entities.Concrete;
 
-namespace Pet.Entities.Concrete
+namespace Pet.AspNetCore.Models.Authentication
 {
-    public class User : IPerson, IBaseEntity, IEntity
+    public class MyAppUser : IdentityUser, IPerson,IEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public bool Gender { get; set; }
         public DateTime Age { get; set; }
         public int AddressId { get; set; }
-        public virtual Address? Addresss { get; set; }
+        public Address Addresss { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }

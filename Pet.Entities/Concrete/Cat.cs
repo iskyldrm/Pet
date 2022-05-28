@@ -2,7 +2,7 @@
 
 namespace Pet.Entities.Concrete
 {
-    public class Cat : LivingProfile
+    public class Cat : LivingProfile,IEntity
     {
     }
 }

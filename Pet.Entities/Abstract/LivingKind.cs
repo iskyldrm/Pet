@@ -10,9 +10,9 @@ namespace Pet.Entities.Abstract
         public int KindFamilya { get; set; }
         public Families Familya { get; set; }
         public int KindGenus { get; set; }
-        public Genus Genus { get; set; } //cins
+        public virtual Genus Genus { get; set; } //cins
         public int KindRacial { get; set; }
-        public Racial Racial { get; set; } //ırkı
+        public virtual Racial Racial { get; set; } //ırkı
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }
