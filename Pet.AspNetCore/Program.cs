@@ -1,13 +1,19 @@
+using Pet.AspNetCore.Models.DbContext;
+using Pet.AspNetCore.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 builder.Services.AddControllersWithViews();
+builder.Services.IdentityServerAyarlari();
+builder.Services.CookieAyarlari();
+
 
 var app = builder.Build();
 
 app.UseStatusCodePages();
 app.UseStaticFiles();
-app.MapGet("/", () => "Hello World!");
+app.UseAuthentication();
 
 app.UseRouting();
 

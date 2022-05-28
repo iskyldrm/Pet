@@ -3,16 +3,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Pet.AspNetCore.Models.Authentication;
 
+
 namespace Pet.AspNetCore.Extensions
 {
     public static class AddIdentityExtension
     {
+        
         public static IServiceCollection IdentityServerAyarlari(this IServiceCollection services)
         {
-            string constr = @"server=(localdb)\mssqllocaldb;database=Pet;Trusted_Connection=true";
+            string conStr = @"server=(localdb)\mssqllocaldb;Database=Pet;Trusted_Connection=True;";
 
             // Identity Server Database ayarlarini IOC Container'ina register ediyoruz
-            services.AddDbContext<MyDbContext>(db => db.UseSqlServer(constr));
+            services.AddDbContext<MyDbContext>(options => options.UseSqlServer(conStr));
 
             // Benim olusturdugum Myuser class'ina gore calisacaktir
             // IdentityRole default halini kullansin
@@ -48,6 +50,21 @@ namespace Pet.AspNetCore.Extensions
             });
 
 
+
+            return services;
+        }
+        public static IServiceCollection CookieAyarlari(this IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccesDenied";
+                options.Cookie.HttpOnly = true; // Tarayicidaki diger scriptler bu cookie'yi okuyamasin
+                options.Cookie.Name = "FBU.Web8.Identity";
+                options.Cookie.SameSite = SameSiteMode.Strict;// Bizim tarayicimiz disinda kullanimini engeller.
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);//Cookie gecerlilik suresi
+            });
 
             return services;
         }
