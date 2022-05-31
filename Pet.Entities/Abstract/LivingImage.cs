@@ -2,7 +2,7 @@
 {
     public abstract class LivingImage : IBaseEntity, IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string ImagePath { get; set; }
         public string Url { get; set; }
         public string ImageDescription { get; set; }

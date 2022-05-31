@@ -4,7 +4,7 @@ namespace Pet.Entities.Concrete
 {
     public class Genus : IBaseEntity, IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string GenusName { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }

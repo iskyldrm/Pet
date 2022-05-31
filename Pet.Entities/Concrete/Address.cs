@@ -4,7 +4,7 @@ namespace Pet.Entities.Concrete
 {
     public class Address : IBaseEntity, IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string CityName { get; set; }
         public virtual City? City { get; set; }
         public int DistrictName { get; set; }

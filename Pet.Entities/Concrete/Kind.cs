@@ -2,7 +2,7 @@
 
 namespace Pet.Entities.Concrete
 {
-    public class Kind : LivingKind, IEntity
+    public class Kind : LivingKind
     {
     }
 }

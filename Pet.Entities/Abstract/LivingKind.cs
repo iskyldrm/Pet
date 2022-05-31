@@ -4,7 +4,7 @@ namespace Pet.Entities.Abstract
 {
     public abstract class LivingKind : IBaseEntity, IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int KindTeam { get; set; }
         public Orders Team { get; set; } //Takım
         public int KindFamilya { get; set; }
