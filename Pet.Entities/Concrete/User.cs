@@ -1,8 +1,9 @@
-﻿using Pet.Entities.Abstract;
+﻿using Microsoft.AspNetCore.Identity;
+using Pet.Entities.Abstract;
 
 namespace Pet.Entities.Concrete
 {
-    public class User : IPerson, IBaseEntity, IEntity //Kullanıcı profili
+    public class User :IdentityUser, IPerson, IBaseEntity, IEntity //Kullanıcı profili
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

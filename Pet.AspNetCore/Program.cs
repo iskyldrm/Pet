@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 builder.Services.AddControllersWithViews();
-builder.Services.IdentityServerAyarlari();
-builder.Services.CookieAyarlari();
+//builder.Services.IdentityServerAyarlari();
+//builder.Services.CookieAyarlari();
 
 
 var app = builder.Build();
