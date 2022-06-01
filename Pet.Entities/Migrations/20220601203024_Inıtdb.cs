@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Pet.Entities.Migrations
 {
-    public partial class Initdb : Migration
+    public partial class Inıtdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,9 +27,10 @@ namespace Pet.Entities.Migrations
                 name: "Cities",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CityNumber = table.Column<byte>(type: "tinyint", nullable: false),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -41,7 +43,8 @@ namespace Pet.Entities.Migrations
                 name: "Genus",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     GenusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -52,10 +55,29 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Kinds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    KindTeam = table.Column<int>(type: "int", nullable: false),
+                    Team = table.Column<int>(type: "int", nullable: false),
+                    KindFamilya = table.Column<int>(type: "int", nullable: false),
+                    Familya = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kinds", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Racials",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RacialName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -69,7 +91,8 @@ namespace Pet.Entities.Migrations
                 name: "UserStatuses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -105,9 +128,10 @@ namespace Pet.Entities.Migrations
                 name: "Districts",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DistrictName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -123,45 +147,13 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Kinds",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KindTeam = table.Column<int>(type: "int", nullable: false),
-                    Team = table.Column<int>(type: "int", nullable: false),
-                    KindFamilya = table.Column<int>(type: "int", nullable: false),
-                    Familya = table.Column<int>(type: "int", nullable: false),
-                    KindGenus = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GenusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KindRacial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RacialId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Kinds", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Kinds_Genus_GenusId",
-                        column: x => x.GenusId,
-                        principalTable: "Genus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Kinds_Racials_RacialId",
-                        column: x => x.RacialId,
-                        principalTable: "Racials",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Addresses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DistrictId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: false),
                     FullAdsress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -192,8 +184,8 @@ namespace Pet.Entities.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Age = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserStatusId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -224,6 +216,37 @@ namespace Pet.Entities.Migrations
                         name: "FK_AspNetUsers_UserStatuses_UserStatusId",
                         column: x => x.UserStatusId,
                         principalTable: "UserStatuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Adverts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdvertNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvertType = table.Column<int>(type: "int", nullable: false),
+                    PetState = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adverts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adverts_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Adverts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -314,70 +337,38 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LivingProfile",
+                name: "Livings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     LivingName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingKind = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KindId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LivingGender = table.Column<bool>(type: "bit", nullable: false),
                     LivingAge = table.Column<byte>(type: "tinyint", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RacialId = table.Column<int>(type: "int", nullable: false),
+                    GenusId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LivingProfile", x => x.Id);
+                    table.PrimaryKey("PK_Livings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LivingProfile_AspNetUsers_UserId",
+                        name: "FK_Livings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Livings_Genus_GenusId",
+                        column: x => x.GenusId,
+                        principalTable: "Genus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_LivingProfile_Kinds_KindId",
-                        column: x => x.KindId,
-                        principalTable: "Kinds",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Adverts",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdvertNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertType = table.Column<int>(type: "int", nullable: false),
-                    PetState = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adverts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adverts_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Adverts_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Adverts_LivingProfile_LivingProfileId",
-                        column: x => x.LivingProfileId,
-                        principalTable: "LivingProfile",
+                        name: "FK_Livings_Racials_RacialId",
+                        column: x => x.RacialId,
+                        principalTable: "Racials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -386,9 +377,10 @@ namespace Pet.Entities.Migrations
                 name: "Favorites",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Discription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AdvertId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -407,14 +399,15 @@ namespace Pet.Entities.Migrations
                 name: "Images",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LivingId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AdvertId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -425,9 +418,9 @@ namespace Pet.Entities.Migrations
                         principalTable: "Adverts",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Images_LivingProfile_LivingProfileId",
-                        column: x => x.LivingProfileId,
-                        principalTable: "LivingProfile",
+                        name: "FK_Images_Livings_LivingId",
+                        column: x => x.LivingId,
+                        principalTable: "Livings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -436,7 +429,7 @@ namespace Pet.Entities.Migrations
                 name: "FavoriteUser",
                 columns: table => new
                 {
-                    FavoritesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FavoritesId = table.Column<int>(type: "int", nullable: false),
                     UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -456,6 +449,16 @@ namespace Pet.Entities.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "CityName", "CityNumber", "CreateTime", "UpdateTime" },
+                values: new object[] { 1, "İstanbul", (byte)34, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "CityName", "CityNumber", "CreateTime", "UpdateTime" },
+                values: new object[] { 2, "Kocaeli", (byte)41, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
                 table: "Addresses",
@@ -470,11 +473,6 @@ namespace Pet.Entities.Migrations
                 name: "IX_Adverts_AddressId",
                 table: "Adverts",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Adverts_LivingProfileId",
-                table: "Adverts",
-                column: "LivingProfileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Adverts_UserId",
@@ -551,28 +549,23 @@ namespace Pet.Entities.Migrations
                 column: "AdvertId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_LivingProfileId",
+                name: "IX_Images_LivingId",
                 table: "Images",
-                column: "LivingProfileId");
+                column: "LivingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Kinds_GenusId",
-                table: "Kinds",
+                name: "IX_Livings_GenusId",
+                table: "Livings",
                 column: "GenusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Kinds_RacialId",
-                table: "Kinds",
+                name: "IX_Livings_RacialId",
+                table: "Livings",
                 column: "RacialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LivingProfile_KindId",
-                table: "LivingProfile",
-                column: "KindId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LivingProfile_UserId",
-                table: "LivingProfile",
+                name: "IX_Livings_UserId",
+                table: "Livings",
                 column: "UserId");
         }
 
@@ -600,34 +593,34 @@ namespace Pet.Entities.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
+                name: "Kinds");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Favorites");
 
             migrationBuilder.DropTable(
+                name: "Livings");
+
+            migrationBuilder.DropTable(
                 name: "Adverts");
-
-            migrationBuilder.DropTable(
-                name: "LivingProfile");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Kinds");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
-
-            migrationBuilder.DropTable(
-                name: "UserStatuses");
 
             migrationBuilder.DropTable(
                 name: "Genus");
 
             migrationBuilder.DropTable(
                 name: "Racials");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "UserStatuses");
 
             migrationBuilder.DropTable(
                 name: "Districts");

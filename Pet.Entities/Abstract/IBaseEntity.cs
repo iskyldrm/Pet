@@ -2,19 +2,9 @@
 {
     public interface IBaseEntity
     {
-        public Guid Id
-        {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                Id = Guid.NewGuid();
-            }
-        }
+        public int Id { get; set; }
 
-
+        
         public DateTime CreateTime
         {
             get { return CreateTime; }

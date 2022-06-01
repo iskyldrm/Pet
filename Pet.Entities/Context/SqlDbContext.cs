@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet.Entities.Concrete;
+using System.Reflection;
 
 namespace Pet.Entities.Context
 {
@@ -9,9 +10,8 @@ namespace Pet.Entities.Context
         DbSet<Address> Addresses { get; set; }
         DbSet<City> Cities { get; set; }
         DbSet<Advert> Adverts { get; set; }
-        DbSet<Cat> Cats { get; set; }
         DbSet<District> Districts { get; set; }
-        DbSet<Dog> Dogs { get; set; }
+        DbSet<Living> Livings { get; set; }
         DbSet<Favorite> Favorites { get; set; }
         DbSet<Genus> Genus { get; set; }
         DbSet<Image> Images { get; set; }
@@ -35,6 +35,7 @@ namespace Pet.Entities.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

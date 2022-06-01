@@ -12,8 +12,8 @@ using Pet.Entities.Context;
 namespace Pet.Entities.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220601154927_Initdb")]
-    partial class Initdb
+    [Migration("20220601203024_Inıtdb")]
+    partial class Inıtdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,8 +26,8 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("FavoriteUser", b =>
                 {
-                    b.Property<Guid>("FavoritesId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("FavoritesId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
@@ -172,67 +172,22 @@ namespace Pet.Entities.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Pet.Entities.Abstract.LivingProfile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("KindId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte>("LivingAge")
-                        .HasColumnType("tinyint");
-
-                    b.Property<bool>("LivingGender")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("LivingKind")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LivingName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KindId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LivingProfile");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("LivingProfile");
-                });
-
             modelBuilder.Entity("Pet.Entities.Concrete.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("CityId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DistrictId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FullAdsress")
                         .HasColumnType("nvarchar(max)");
@@ -251,12 +206,14 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("AdvertNo")
                         .IsRequired()
@@ -267,9 +224,6 @@ namespace Pet.Entities.Migrations
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LivingProfileId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PetState")
                         .IsRequired()
@@ -286,8 +240,6 @@ namespace Pet.Entities.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("LivingProfileId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Adverts");
@@ -295,13 +247,16 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.City", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CityName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<byte>("CityNumber")
                         .HasColumnType("tinyint");
@@ -315,16 +270,36 @@ namespace Pet.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityName = "İstanbul",
+                            CityNumber = (byte)34,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityName = "Kocaeli",
+                            CityNumber = (byte)41,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.District", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("CityId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -345,12 +320,14 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Favorite", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("AdvertId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdvertId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -371,9 +348,11 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Genus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -392,12 +371,14 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Image", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid?>("AdvertId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AdvertId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -410,8 +391,8 @@ namespace Pet.Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LivingProfileId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("LivingId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
@@ -424,16 +405,18 @@ namespace Pet.Entities.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.HasIndex("LivingProfileId");
+                    b.HasIndex("LivingId");
 
                     b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.Kind", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -441,23 +424,11 @@ namespace Pet.Entities.Migrations
                     b.Property<int>("Familya")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("GenusId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("KindFamilya")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("KindGenus")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("KindRacial")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("KindTeam")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("RacialId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Team")
                         .HasColumnType("int");
@@ -467,18 +438,60 @@ namespace Pet.Entities.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Kinds");
+                });
+
+            modelBuilder.Entity("Pet.Entities.Concrete.Living", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GenusId")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("LivingAge")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("LivingGender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LivingName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RacialId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("GenusId");
 
                     b.HasIndex("RacialId");
 
-                    b.ToTable("Kinds");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Livings");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.Racial", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -503,8 +516,8 @@ namespace Pet.Entities.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Age")
                         .HasColumnType("datetime2");
@@ -570,8 +583,8 @@ namespace Pet.Entities.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<Guid>("UserStatusId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserStatusId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -592,9 +605,11 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.UserStatus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -612,20 +627,6 @@ namespace Pet.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserStatuses");
-                });
-
-            modelBuilder.Entity("Pet.Entities.Concrete.Cat", b =>
-                {
-                    b.HasBaseType("Pet.Entities.Abstract.LivingProfile");
-
-                    b.HasDiscriminator().HasValue("Cat");
-                });
-
-            modelBuilder.Entity("Pet.Entities.Concrete.Dog", b =>
-                {
-                    b.HasBaseType("Pet.Entities.Abstract.LivingProfile");
-
-                    b.HasDiscriminator().HasValue("Dog");
                 });
 
             modelBuilder.Entity("FavoriteUser", b =>
@@ -694,25 +695,6 @@ namespace Pet.Entities.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Pet.Entities.Abstract.LivingProfile", b =>
-                {
-                    b.HasOne("Pet.Entities.Concrete.Kind", "Kind")
-                        .WithMany()
-                        .HasForeignKey("KindId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Pet.Entities.Concrete.User", "User")
-                        .WithMany("LivingProfile")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Kind");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Pet.Entities.Concrete.Address", b =>
                 {
                     b.HasOne("Pet.Entities.Concrete.City", "City")
@@ -740,12 +722,6 @@ namespace Pet.Entities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pet.Entities.Abstract.LivingProfile", "LivingProfiles")
-                        .WithMany()
-                        .HasForeignKey("LivingProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Pet.Entities.Concrete.User", "User")
                         .WithMany("Advert")
                         .HasForeignKey("UserId")
@@ -753,8 +729,6 @@ namespace Pet.Entities.Migrations
                         .IsRequired();
 
                     b.Navigation("Address");
-
-                    b.Navigation("LivingProfiles");
 
                     b.Navigation("User");
                 });
@@ -787,16 +761,16 @@ namespace Pet.Entities.Migrations
                         .WithMany("Image")
                         .HasForeignKey("AdvertId");
 
-                    b.HasOne("Pet.Entities.Abstract.LivingProfile", "LivingProfile")
-                        .WithMany("Image")
-                        .HasForeignKey("LivingProfileId")
+                    b.HasOne("Pet.Entities.Concrete.Living", "Living")
+                        .WithMany()
+                        .HasForeignKey("LivingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("LivingProfile");
+                    b.Navigation("Living");
                 });
 
-            modelBuilder.Entity("Pet.Entities.Concrete.Kind", b =>
+            modelBuilder.Entity("Pet.Entities.Concrete.Living", b =>
                 {
                     b.HasOne("Pet.Entities.Concrete.Genus", "Genus")
                         .WithMany()
@@ -809,6 +783,10 @@ namespace Pet.Entities.Migrations
                         .HasForeignKey("RacialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Pet.Entities.Concrete.User", null)
+                        .WithMany("Livings")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Genus");
 
@@ -834,11 +812,6 @@ namespace Pet.Entities.Migrations
                     b.Navigation("UserStatus");
                 });
 
-            modelBuilder.Entity("Pet.Entities.Abstract.LivingProfile", b =>
-                {
-                    b.Navigation("Image");
-                });
-
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
                 {
                     b.Navigation("Image");
@@ -853,7 +826,7 @@ namespace Pet.Entities.Migrations
                 {
                     b.Navigation("Advert");
 
-                    b.Navigation("LivingProfile");
+                    b.Navigation("Livings");
                 });
 #pragma warning restore 612, 618
         }
