@@ -192,8 +192,8 @@ namespace Pet.Entities.Migrations
                     b.Property<bool>("LivingGender")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LivingKind")
-                        .HasColumnType("int");
+                    b.Property<Guid>("LivingKind")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LivingName")
                         .IsRequired()
@@ -202,10 +202,7 @@ namespace Pet.Entities.Migrations
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -213,7 +210,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasIndex("KindId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("LivingProfile");
 
@@ -226,21 +223,14 @@ namespace Pet.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CityId")
+                    b.Property<Guid>("CityId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DistrictId")
+                    b.Property<Guid>("DistrictId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DistrictName")
-                        .HasColumnType("int");
 
                     b.Property<string>("FullAdsress")
                         .HasColumnType("nvarchar(max)");
@@ -263,10 +253,7 @@ namespace Pet.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("AddressId1")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AdvertNo")
@@ -279,10 +266,7 @@ namespace Pet.Entities.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LivingProfile")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("LivingProfilesId")
+                    b.Property<Guid>("LivingProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PetState")
@@ -292,19 +276,17 @@ namespace Pet.Entities.Migrations
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId1");
+                    b.HasIndex("AddressId");
 
-                    b.HasIndex("LivingProfilesId");
+                    b.HasIndex("LivingProfileId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Adverts");
                 });
@@ -339,10 +321,7 @@ namespace Pet.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("CityId1")
+                    b.Property<Guid>("CityId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
@@ -357,7 +336,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityId1");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Districts");
                 });
@@ -368,10 +347,7 @@ namespace Pet.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AdvertId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("AdvertId1")
+                    b.Property<Guid>("AdvertId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
@@ -386,7 +362,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertId1");
+                    b.HasIndex("AdvertId");
 
                     b.ToTable("Favorites");
                 });
@@ -432,10 +408,7 @@ namespace Pet.Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LivingProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("LivingProfileId1")
+                    b.Property<Guid>("LivingProfileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdateTime")
@@ -449,7 +422,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.HasIndex("LivingProfileId1");
+                    b.HasIndex("LivingProfileId");
 
                     b.ToTable("Images");
                 });
@@ -472,11 +445,11 @@ namespace Pet.Entities.Migrations
                     b.Property<int>("KindFamilya")
                         .HasColumnType("int");
 
-                    b.Property<int>("KindGenus")
-                        .HasColumnType("int");
+                    b.Property<Guid>("KindGenus")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("KindRacial")
-                        .HasColumnType("int");
+                    b.Property<Guid>("KindRacial")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("KindTeam")
                         .HasColumnType("int");
@@ -528,10 +501,7 @@ namespace Pet.Entities.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("AddresssId")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Age")
@@ -598,15 +568,12 @@ namespace Pet.Entities.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("UserStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserStatusId1")
+                    b.Property<Guid>("UserStatusId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddresssId");
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -616,7 +583,7 @@ namespace Pet.Entities.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("UserStatusId1");
+                    b.HasIndex("UserStatusId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -735,7 +702,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasOne("Pet.Entities.Concrete.User", "User")
                         .WithMany("LivingProfile")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -748,11 +715,15 @@ namespace Pet.Entities.Migrations
                 {
                     b.HasOne("Pet.Entities.Concrete.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet.Entities.Concrete.District", "District")
                         .WithMany()
-                        .HasForeignKey("DistrictId");
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
 
@@ -763,19 +734,21 @@ namespace Pet.Entities.Migrations
                 {
                     b.HasOne("Pet.Entities.Concrete.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId1")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pet.Entities.Abstract.LivingProfile", "LivingProfiles")
                         .WithMany()
-                        .HasForeignKey("LivingProfilesId")
+                        .HasForeignKey("LivingProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pet.Entities.Concrete.User", "User")
                         .WithMany("Advert")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
@@ -788,7 +761,9 @@ namespace Pet.Entities.Migrations
                 {
                     b.HasOne("Pet.Entities.Concrete.City", "City")
                         .WithMany("Districts")
-                        .HasForeignKey("CityId1");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
                 });
@@ -797,7 +772,9 @@ namespace Pet.Entities.Migrations
                 {
                     b.HasOne("Pet.Entities.Concrete.Advert", "Advert")
                         .WithMany()
-                        .HasForeignKey("AdvertId1");
+                        .HasForeignKey("AdvertId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Advert");
                 });
@@ -810,7 +787,7 @@ namespace Pet.Entities.Migrations
 
                     b.HasOne("Pet.Entities.Abstract.LivingProfile", "LivingProfile")
                         .WithMany("Image")
-                        .HasForeignKey("LivingProfileId1")
+                        .HasForeignKey("LivingProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -840,11 +817,13 @@ namespace Pet.Entities.Migrations
                 {
                     b.HasOne("Pet.Entities.Concrete.Address", "Addresss")
                         .WithMany()
-                        .HasForeignKey("AddresssId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet.Entities.Concrete.UserStatus", "UserStatus")
                         .WithMany()
-                        .HasForeignKey("UserStatusId1")
+                        .HasForeignKey("UserStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

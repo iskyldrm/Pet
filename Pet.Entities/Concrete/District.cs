@@ -6,7 +6,7 @@ namespace Pet.Entities.Concrete
     {
         public Guid Id { get; set; }
         public string DistrictName { get; set; }
-        public int CityId { get; set; }
+        public Guid CityId { get; set; }
         public virtual City? City { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }

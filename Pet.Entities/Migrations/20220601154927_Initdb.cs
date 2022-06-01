@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -99,7 +98,7 @@ namespace Pet.Entities.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,8 +107,7 @@ namespace Pet.Entities.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DistrictName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    CityId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -117,10 +115,11 @@ namespace Pet.Entities.Migrations
                 {
                     table.PrimaryKey("PK_Districts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Districts_Cities_CityId1",
-                        column: x => x.CityId1,
+                        name: "FK_Districts_Cities_CityId",
+                        column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,9 +131,9 @@ namespace Pet.Entities.Migrations
                     Team = table.Column<int>(type: "int", nullable: false),
                     KindFamilya = table.Column<int>(type: "int", nullable: false),
                     Familya = table.Column<int>(type: "int", nullable: false),
-                    KindGenus = table.Column<int>(type: "int", nullable: false),
+                    KindGenus = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GenusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KindRacial = table.Column<int>(type: "int", nullable: false),
+                    KindRacial = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RacialId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -147,13 +146,13 @@ namespace Pet.Entities.Migrations
                         column: x => x.GenusId,
                         principalTable: "Genus",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Kinds_Racials_RacialId",
                         column: x => x.RacialId,
                         principalTable: "Racials",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,10 +160,8 @@ namespace Pet.Entities.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DistrictName = table.Column<int>(type: "int", nullable: false),
-                    DistrictId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DistrictId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullAdsress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -176,12 +173,14 @@ namespace Pet.Entities.Migrations
                         name: "FK_Addresses_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Addresses_Districts_DistrictId",
                         column: x => x.DistrictId,
                         principalTable: "Districts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,10 +192,8 @@ namespace Pet.Entities.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Age = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserStatusId = table.Column<int>(type: "int", nullable: false),
-                    UserStatusId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    AddresssId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -218,16 +215,17 @@ namespace Pet.Entities.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Addresses_AddresssId",
-                        column: x => x.AddresssId,
+                        name: "FK_AspNetUsers_Addresses_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Addresses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_UserStatuses_UserStatusId1",
-                        column: x => x.UserStatusId1,
+                        name: "FK_AspNetUsers_UserStatuses_UserStatusId",
+                        column: x => x.UserStatusId,
                         principalTable: "UserStatuses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,7 +246,7 @@ namespace Pet.Entities.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,7 +266,7 @@ namespace Pet.Entities.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -286,13 +284,13 @@ namespace Pet.Entities.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -312,7 +310,7 @@ namespace Pet.Entities.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -321,12 +319,11 @@ namespace Pet.Entities.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LivingName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingKind = table.Column<int>(type: "int", nullable: false),
+                    LivingKind = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     KindId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LivingGender = table.Column<bool>(type: "bit", nullable: false),
                     LivingAge = table.Column<byte>(type: "tinyint", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -335,17 +332,17 @@ namespace Pet.Entities.Migrations
                 {
                     table.PrimaryKey("PK_LivingProfile", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LivingProfile_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_LivingProfile_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_LivingProfile_Kinds_KindId",
                         column: x => x.KindId,
                         principalTable: "Kinds",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -356,12 +353,9 @@ namespace Pet.Entities.Migrations
                     AdvertNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertType = table.Column<int>(type: "int", nullable: false),
                     PetState = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingProfile = table.Column<int>(type: "int", nullable: false),
-                    LivingProfilesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    AddressId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LivingProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -369,22 +363,23 @@ namespace Pet.Entities.Migrations
                 {
                     table.PrimaryKey("PK_Adverts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Adverts_Addresses_AddressId1",
-                        column: x => x.AddressId1,
+                        name: "FK_Adverts_Addresses_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Adverts_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Adverts_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Adverts_LivingProfile_LivingProfilesId",
-                        column: x => x.LivingProfilesId,
+                        name: "FK_Adverts_LivingProfile_LivingProfileId",
+                        column: x => x.LivingProfileId,
                         principalTable: "LivingProfile",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -393,8 +388,7 @@ namespace Pet.Entities.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Discription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertId = table.Column<int>(type: "int", nullable: false),
-                    AdvertId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -402,10 +396,11 @@ namespace Pet.Entities.Migrations
                 {
                     table.PrimaryKey("PK_Favorites", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Favorites_Adverts_AdvertId1",
-                        column: x => x.AdvertId1,
+                        name: "FK_Favorites_Adverts_AdvertId",
+                        column: x => x.AdvertId,
                         principalTable: "Adverts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -417,8 +412,7 @@ namespace Pet.Entities.Migrations
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LivingProfileId = table.Column<int>(type: "int", nullable: false),
-                    LivingProfileId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LivingProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -431,11 +425,11 @@ namespace Pet.Entities.Migrations
                         principalTable: "Adverts",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Images_LivingProfile_LivingProfileId1",
-                        column: x => x.LivingProfileId1,
+                        name: "FK_Images_LivingProfile_LivingProfileId",
+                        column: x => x.LivingProfileId,
                         principalTable: "LivingProfile",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -453,13 +447,13 @@ namespace Pet.Entities.Migrations
                         column: x => x.UsersId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_FavoriteUser_Favorites_FavoritesId",
                         column: x => x.FavoritesId,
                         principalTable: "Favorites",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -473,19 +467,19 @@ namespace Pet.Entities.Migrations
                 column: "DistrictId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adverts_AddressId1",
+                name: "IX_Adverts_AddressId",
                 table: "Adverts",
-                column: "AddressId1");
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adverts_LivingProfilesId",
+                name: "IX_Adverts_LivingProfileId",
                 table: "Adverts",
-                column: "LivingProfilesId");
+                column: "LivingProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adverts_UserId1",
+                name: "IX_Adverts_UserId",
                 table: "Adverts",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -520,14 +514,14 @@ namespace Pet.Entities.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_AddresssId",
+                name: "IX_AspNetUsers_AddressId",
                 table: "AspNetUsers",
-                column: "AddresssId");
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_UserStatusId1",
+                name: "IX_AspNetUsers_UserStatusId",
                 table: "AspNetUsers",
-                column: "UserStatusId1");
+                column: "UserStatusId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -537,14 +531,14 @@ namespace Pet.Entities.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Districts_CityId1",
+                name: "IX_Districts_CityId",
                 table: "Districts",
-                column: "CityId1");
+                column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favorites_AdvertId1",
+                name: "IX_Favorites_AdvertId",
                 table: "Favorites",
-                column: "AdvertId1");
+                column: "AdvertId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FavoriteUser_UsersId",
@@ -557,9 +551,9 @@ namespace Pet.Entities.Migrations
                 column: "AdvertId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_LivingProfileId1",
+                name: "IX_Images_LivingProfileId",
                 table: "Images",
-                column: "LivingProfileId1");
+                column: "LivingProfileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Kinds_GenusId",
@@ -577,9 +571,9 @@ namespace Pet.Entities.Migrations
                 column: "KindId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LivingProfile_UserId1",
+                name: "IX_LivingProfile_UserId",
                 table: "LivingProfile",
-                column: "UserId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
