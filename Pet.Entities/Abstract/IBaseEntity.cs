@@ -2,11 +2,11 @@
 {
     public interface IBaseEntity
     {
-        public Guid Id 
-        { 
+        public Guid Id
+        {
             get
             {
-                return Id; 
+                return Id;
             }
             set
             {
@@ -14,17 +14,18 @@
             }
         }
 
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime 
-        { 
-            get
-            {
-                return DateTime.UtcNow;
-            } 
-            set
-            {
-                CreateTime = value;
-            }
+
+        public DateTime CreateTime
+        {
+            get { return CreateTime; }
+            set { value = DateTime.UtcNow; }
+        }
+
+        public DateTime UpdateTime
+        {
+            get { return CreateTime; }
+            set { value = DateTime.UtcNow; }
+
         }
 
     }

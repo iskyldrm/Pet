@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Pet.Entities.Context
 {
-    public class MySqlDbContext:DbContext
+    public class SqlDbContext : IdentityDbContext<User>
     {
         DbSet<Address> Addresses { get; set; }
         DbSet<City> Cities { get; set; }
@@ -25,10 +20,13 @@ namespace Pet.Entities.Context
         DbSet<Racial> Racials { get; set; }
         DbSet<User> Users { get; set; }
         DbSet<UserStatus> UserStatuses { get; set; }
-
-        public MySqlDbContext(DbContextOptions<MySqlDbContext> options):base(options)
+        public SqlDbContext()
         {
-            
+
+        }
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        {
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,7 +35,7 @@ namespace Pet.Entities.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
