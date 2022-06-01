@@ -12,7 +12,7 @@ using Pet.Entities.Context;
 namespace Pet.Entities.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220601131200_Initdb")]
+    [Migration("20220601145724_Initdb")]
     partial class Initdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
