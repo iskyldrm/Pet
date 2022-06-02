@@ -3,10 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pet.Entities.Concrete
 {
-    public class Address : IBaseEntity, IEntity
+    public class Address : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
-        
         public int CityId { get; set; }
         public virtual City? City { get; set; }
         public int DistrictId { get; set; }

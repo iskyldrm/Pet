@@ -204,11 +204,9 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -253,8 +251,7 @@ namespace Pet.Entities.Migrations
 
                     b.Property<string>("CityName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("CityNumber")
                         .HasColumnType("tinyint");
@@ -268,24 +265,6 @@ namespace Pet.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityName = "İstanbul",
-                            CityNumber = (byte)34,
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CityName = "Kocaeli",
-                            CityNumber = (byte)41,
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.District", b =>
@@ -324,8 +303,8 @@ namespace Pet.Entities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AdvertId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AdvertId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -369,28 +348,24 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("AdvertId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AdvertId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LivingId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("LivingId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
@@ -441,16 +416,17 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Living", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GenusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KindId")
                         .HasColumnType("int");
 
                     b.Property<byte>("LivingAge")
@@ -475,6 +451,8 @@ namespace Pet.Entities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GenusId");
+
+                    b.HasIndex("KindId");
 
                     b.HasIndex("RacialId");
 
@@ -745,10 +723,8 @@ namespace Pet.Entities.Migrations
             modelBuilder.Entity("Pet.Entities.Concrete.Favorite", b =>
                 {
                     b.HasOne("Pet.Entities.Concrete.Advert", "Advert")
-                        .WithMany()
-                        .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Favorites")
+                        .HasForeignKey("AdvertId");
 
                     b.Navigation("Advert");
                 });
@@ -760,10 +736,8 @@ namespace Pet.Entities.Migrations
                         .HasForeignKey("AdvertId");
 
                     b.HasOne("Pet.Entities.Concrete.Living", "Living")
-                        .WithMany()
-                        .HasForeignKey("LivingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Images")
+                        .HasForeignKey("LivingId");
 
                     b.Navigation("Living");
                 });
@@ -773,6 +747,12 @@ namespace Pet.Entities.Migrations
                     b.HasOne("Pet.Entities.Concrete.Genus", "Genus")
                         .WithMany()
                         .HasForeignKey("GenusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pet.Entities.Concrete.Kind", "Kind")
+                        .WithMany("Livings")
+                        .HasForeignKey("KindId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -787,6 +767,8 @@ namespace Pet.Entities.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Genus");
+
+                    b.Navigation("Kind");
 
                     b.Navigation("Racial");
                 });
@@ -812,12 +794,24 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
                 {
+                    b.Navigation("Favorites");
+
                     b.Navigation("Image");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.City", b =>
                 {
                     b.Navigation("Districts");
+                });
+
+            modelBuilder.Entity("Pet.Entities.Concrete.Kind", b =>
+                {
+                    b.Navigation("Livings");
+                });
+
+            modelBuilder.Entity("Pet.Entities.Concrete.Living", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.User", b =>

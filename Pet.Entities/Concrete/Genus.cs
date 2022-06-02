@@ -2,7 +2,7 @@
 
 namespace Pet.Entities.Concrete
 {
-    public class Genus : IBaseEntity, IEntity
+    public class Genus : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
         public string GenusName { get; set; }

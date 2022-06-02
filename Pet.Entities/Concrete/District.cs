@@ -2,7 +2,7 @@
 
 namespace Pet.Entities.Concrete
 {
-    public class District : IBaseEntity, IEntity
+    public class District : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
         public string DistrictName { get; set; }

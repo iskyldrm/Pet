@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pet.Entities.Concrete
 {
-    public class City : IBaseEntity, IEntity
+    public class City : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
         public byte CityNumber { get; set; } //plaka no

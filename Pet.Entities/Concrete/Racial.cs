@@ -2,7 +2,7 @@
 
 namespace Pet.Entities.Concrete
 {
-    public class Racial : IBaseEntity, IEntity
+    public class Racial : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
         public string RacialName { get; set; }

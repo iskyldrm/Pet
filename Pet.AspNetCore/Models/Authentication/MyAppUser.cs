@@ -4,7 +4,7 @@ using Pet.Entities.Concrete;
 
 namespace Pet.AspNetCore.Models.Authentication
 {
-    public class MyAppUser : IdentityUser, IPerson, IEntity
+    public class MyAppUser : IdentityUser, IEntity
     {
         public string Name { get; set; }
         public string LastName { get; set; }
