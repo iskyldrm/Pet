@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet.Entities", "Pet.Entitie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet.AspNetCore", "Pet.AspNetCore\Pet.AspNetCore.csproj", "{096126F0-8DD4-490E-B65E-6E1FD23D01CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.DAL", "Pet.DAL\Pet.DAL.csproj", "{0E228BD7-B810-49C8-A167-0E1ED5514AE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pet.DAL", "Pet.DAL\Pet.DAL.csproj", "{0E228BD7-B810-49C8-A167-0E1ED5514AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.BL", "Pet.BL\Pet.BL.csproj", "{DA49557F-EB03-4408-8C9B-B56A1DA60685}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.WEB", "Pet.WEB\Pet.WEB.csproj", "{09A57353-1D39-446E-86CB-579F31F3F422}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{0E228BD7-B810-49C8-A167-0E1ED5514AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E228BD7-B810-49C8-A167-0E1ED5514AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E228BD7-B810-49C8-A167-0E1ED5514AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA49557F-EB03-4408-8C9B-B56A1DA60685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA49557F-EB03-4408-8C9B-B56A1DA60685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA49557F-EB03-4408-8C9B-B56A1DA60685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA49557F-EB03-4408-8C9B-B56A1DA60685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A57353-1D39-446E-86CB-579F31F3F422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A57353-1D39-446E-86CB-579F31F3F422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A57353-1D39-446E-86CB-579F31F3F422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A57353-1D39-446E-86CB-579F31F3F422}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
