@@ -1,24 +1,23 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet.Entities.Concrete;
-using System.Reflection;
 
 namespace Pet.Entities.Context
 {
     public class SqlDbContext : IdentityDbContext<User>
     {
-        DbSet<Address> Addresses { get; set; }
-        DbSet<City> Cities { get; set; }
-        DbSet<Advert> Adverts { get; set; }
-        DbSet<District> Districts { get; set; }
-        DbSet<Living> Livings { get; set; }
-        DbSet<Favorite> Favorites { get; set; }
-        DbSet<Genus> Genus { get; set; }
-        DbSet<Image> Images { get; set; }
-        DbSet<Kind> Kinds { get; set; }
-        DbSet<Racial> Racials { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<UserStatus> UserStatuses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Advert> Adverts { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Living> Livings { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Genus> Genus { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Kind> Kinds { get; set; }
+        public DbSet<Racial> Racials { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserStatus> UserStatuses { get; set; }
         public SqlDbContext()
         {
 
