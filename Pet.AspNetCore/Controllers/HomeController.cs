@@ -6,11 +6,11 @@ namespace Pet.AspNetCore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UserManager<User> userManager;
+        
 
-        public HomeController(UserManager<User> userManager)
+        public HomeController()
         {
-            this.userManager = userManager;
+            
         }
         public IActionResult Index()
         {
