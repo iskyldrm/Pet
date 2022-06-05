@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.IdentitySettings();
 builder.Services.UserPasswordSettings();
+builder.Services.AddMvc();
+builder.Services.AddHealthChecks();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -29,6 +32,11 @@ app.UseRouting();
 app.UseAuthentication();;
 
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    // Part 2: add this call.
+    endpoints.MapRazorPages();
+});
 
 app.MapControllerRoute(
             name: "areas",
