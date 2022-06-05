@@ -9,14 +9,14 @@ namespace Pet.WEB.Extensions
 {
     public static class IdentityServiceExtensions
     {
-        
         public static IServiceCollection IdentitySettings(this IServiceCollection services)
         {
             var constr = @"Server=(localdb)\mssqllocaldb;database=Pet;trusted_connection=true";
                 services.AddDbContext<SqlDbContext>
                 (options => options.UseSqlServer(constr));
 
-            services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<SqlDbContext>().
+            services.AddIdentity<User,IdentityRole>().
+                AddDefaultUI().AddEntityFrameworkStores<SqlDbContext>().
                 AddDefaultTokenProviders();
 
             return services;

@@ -114,6 +114,11 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.UserName = "iskyldrm";
+                user.Name = "isak";
+                user.LastName = "Yıldırım";
+                //user.Age = DateTime.Now;
+                user.Gender = true;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
