@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pet.Entities.Migrations
 {
-    public partial class Initdb : Migration
+    public partial class InıtDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
