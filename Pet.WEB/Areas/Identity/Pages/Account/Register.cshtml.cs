@@ -117,6 +117,9 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 user.UserName = "iskyldrm";
                 user.Name = "isak";
                 user.LastName = "Yıldırım";
+                user.AddressId = 1;
+                user.UserStatusId = 1;
+                user.EmailConfirmed = true;
                 //user.Age = DateTime.Now;
                 user.Gender = true;
 
