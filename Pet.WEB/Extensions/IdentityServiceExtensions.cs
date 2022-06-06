@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Pet.Entities.Concrete;
 using Pet.Entities.Context;
-using System.Configuration;
-using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace Pet.WEB.Extensions
 {
@@ -12,13 +11,15 @@ namespace Pet.WEB.Extensions
         public static IServiceCollection IdentitySettings(this IServiceCollection services)
         {
             var constr = @"Server=(localdb)\mssqllocaldb;database=Pet;trusted_connection=true";
-                services.AddDbContext<SqlDbContext>
-                (options => options.UseSqlServer(constr));
+            services.AddDbContext<SqlDbContext>
+            (options => options.UseSqlServer(constr));
 
-            services.AddIdentity<User,IdentityRole>().
+            services.AddIdentity<User, IdentityRole>().
                 AddDefaultUI().AddEntityFrameworkStores<SqlDbContext>().
                 AddDefaultTokenProviders();
 
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddScoped<IdentityUser, User>();
             return services;
         }
 
