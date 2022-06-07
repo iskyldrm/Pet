@@ -3,69 +3,83 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = null;
 }
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<main class="form-signin w-100 m-auto">
-<div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-md-9 col-lg-6 col-xl-3">
-        <img src="~/dist/img/CD.jpg"
-          class="img-fluid" alt="cat&dog resmi">
-      </div>
-    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <section class="vh-100">
-            <form id="account" method="post">
-              <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p class="lead fw-normal mb-0 me-3">Giriş yap</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                    </button>
+<main class="form-signin w-auto m-auto">
+    <div class="container">
+        <div class="row">
+           <div class="col-md-4 col-lg-6">
+               <br />
+               <br />
+               <br />
+               <br />
+           </div>
+           <div class="col-md-6 col-lg-6">
+               <br />
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 ">
+                <img src="~/dist/img/CD.jpg" class="img-fluid" alt="cat&dog resmi">
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <section class="vh-100">
+                    <form id="account" method="post">
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                            <p class="lead fw-normal mb-0 me-3">Giriş yap</p>
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                        <i class="fab fa-facebook-f"></i>
+                                </button>
 
-                     <button type="button" class="btn btn-link btn-floating mx-1">
-                     <i class="fab fa-twitter"></i>
-                    </button>
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
 
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                     <i class="fab fa-linkedin-in"></i>
-                    </button>
-              </div>
-              <div class="divider d-flex align-items-center my-4">
-                    <p class="text-center fw-bold mx-0 mb-0">Veya</p>
-              </div>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-outline mb-4">
-                    <input asp-for="Input.Email" class="form-control form-control-lg" id="form3Example3" placeholder="Kayıtlı bir Email adresi gir" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-outline mb-3">
-                    <input asp-for="Input.Password" class="form-control form-control-lg" id="form3Example4" placeholder="Şifre gir" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="form-check mb-1">
-                        <label asp-for="Input.RememberMe" class="form-check-label" id="form3Example3" >
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                 <i class="fab fa-linkedin-in"></i>
+                                </button>
+                        </div>
+                        <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-0 mb-0">Veya</p>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-outline mb-4">
+                            <input asp-for="Input.Email" class="form-control form-control-lg" id="form3Example3" placeholder="Kayıtlı bir Email adresi gir" autocomplete="username" aria-required="true" />
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <input asp-for="Input.Password" class="form-control form-control-lg" id="form3Example4" placeholder="Şifre gir" autocomplete="current-password" aria-required="true" />
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div class="form-check mb-1">
+                            <label asp-for="Input.RememberMe" class="form-check-label" id="form3Example3" >
                             <input class="form-check-input me-2" asp-for="Input.RememberMe"  />
                             <label asp-for="Input.RememberMe" class="form-check-label" for="form2Example3">
                                 Beni hatırla
                                 </label>
                             @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
-                        </label>
-                        <br />
-                        </div>
-                        <div>
+                            </label>
+                            <br />
+                            </div>
+                            <div>
                             <a class="text-body" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                        </div>
+                            </div>
                         
                     
-                </div>
-                <div class="text-center text-lg-start mt-4 pt-2">
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-success">Log in</button>
-                </div>
-            </form>
-        </section>
-</div>
-</div>
+                        </div>
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-success">Log in</button>
+                         </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+    </div>
 </main>
 
 @section Scripts {
