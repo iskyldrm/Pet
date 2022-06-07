@@ -72,12 +72,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            //private readonly IDistrictDAL districtDAL;
-
-            //public InputModel(IDistrictDAL districtDAL)
-            //{
-            //    this.districtDAL = districtDAL;
-            //}
 
             [Required(ErrorMessage = "Kullanıcı adı zorunludur")]
             [Display(Name = "Kullanıcı Adınız")]
@@ -108,7 +102,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             public int? UserStatusId { get; set; }
 
             public bool EmailConfirmed { get; set; } = false;
-
+            public string FullAddress { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -164,16 +158,20 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 var address = new Address();
                 address.CityId = Input.CityId;
                 address.DistrictId = Input.DistrictId;
+                address.City = Input.CityName;
+                address.UpdateTime = DateTime.Now;
+                address.UpdateTime = DateTime.Now;
+                address.FullAdsress = Input.FullAddress;
                 user.Addresss = address;
                 user.LastName = Input.LastName;
                 user.Name = Input.Name;
                 user.UserName = Input.UserName;
-                user.UserStatusId = 2;
+                user.UserStatusId = 1;
                 user.EmailConfirmed = true;
                 user.Age = DateTime.Now;
                 user.Gender = Input.Gender;
 
-                //await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
