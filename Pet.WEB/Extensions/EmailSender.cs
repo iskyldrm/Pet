@@ -21,6 +21,7 @@ namespace Pet.WEB.Extensions
 
 
             SmtpClient smtpClient = new SmtpClient();
+            smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new System.Net.NetworkCredential("cinaliveli5@gmail.com", "AliVeli4950");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
@@ -35,7 +36,7 @@ namespace Pet.WEB.Extensions
             }
             catch (Exception ex)
             {
-
+                string str = ex.Message;
             }
         }
     }
