@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Pet.WEB.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,10 @@ builder.Services.IdentitySettings();
 builder.Services.UserPasswordSettings();
 builder.Services.AddMvc();
 builder.Services.AddHealthChecks();
-
+builder.Services.Configure<IdentityOptions>(x =>
+{
+    x.SignIn.RequireConfirmedEmail = true;
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -34,8 +38,9 @@ app.UseEndpoints(endpoints =>
     endpoints.MapRazorPages();
 });
 
-app.MapControllerRoute(
+app.MapAreaControllerRoute(
             name: "areas",
+            areaName:"Identity",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                         );
 
