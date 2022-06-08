@@ -7,10 +7,10 @@ builder.Services.IdentitySettings();
 builder.Services.UserPasswordSettings();
 builder.Services.AddMvc();
 builder.Services.AddHealthChecks();
-builder.Services.Configure<IdentityOptions>(x =>
-{
-    x.SignIn.RequireConfirmedEmail = true;
-});
+//builder.Services.Configure<IdentityOptions>(x =>
+//{
+//    x.SignIn.RequireConfirmedAccount = true;
+//});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

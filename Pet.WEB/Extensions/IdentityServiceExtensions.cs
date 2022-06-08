@@ -45,6 +45,7 @@ namespace Pet.WEB.Extensions
 
                 //Girilen Mail adresinden sadece bir adet olacak
                 options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedAccount = true;
 
                 options.SignIn.RequireConfirmedEmail = true;
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";

@@ -129,7 +129,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı");
                     return Page();
                 }
             }
