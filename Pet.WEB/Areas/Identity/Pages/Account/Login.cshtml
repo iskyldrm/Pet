@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Log in";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <main class="form-signin w-auto m-auto">
@@ -27,8 +27,8 @@
                 <section class="vh-100">
                     <form id="account" method="post">
                         <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Giriş yap</p>
-                                <button type="button" class="btn btn-link btn-floating mx-1">
+                            <p class="lead fw-bold mb-0 me-3">Giriş yap</p>
+                                <button type="button" class="btn btn-link  mx-1">
                                         <i class="fab fa-facebook-f"></i>
                                 </button>
 
@@ -41,7 +41,7 @@
                                 </button>
                         </div>
                         <div class="divider d-flex align-items-center my-4">
-                                <p class="text-center fw-bold mx-0 mb-0">Veya</p>
+                                <p class="lead fw-normal mx-0 mb-0">Veya</p>
                         </div>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-outline mb-4">
@@ -65,7 +65,7 @@
                             <br />
                             </div>
                             <div>
-                            <a class="text-body" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            <a class="text-body" id="forgot-password" asp-area="Identity" asp-page="./ForgotPassword">Forgot your password?</a>
                             </div>
                         
                     

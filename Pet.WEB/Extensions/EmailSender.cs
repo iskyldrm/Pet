@@ -24,7 +24,7 @@ namespace Pet.WEB.Extensions
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Host = "smtp.office365.com";
             smtpClient.Credentials = new System.Net.NetworkCredential("minikpetler@hotmail.com", "Kovboy99f.i");
-            smtpClient.Port = 465;
+            smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             #endregion

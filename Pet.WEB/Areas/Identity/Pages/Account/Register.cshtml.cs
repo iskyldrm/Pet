@@ -167,7 +167,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 user.Name = Input.Name;
                 user.UserName = Input.UserName;
                 user.UserStatusId = 1;
-                user.EmailConfirmed = false;
+                user.EmailConfirmed = Input.EmailConfirmed;
+                //user.EmailConfirmed = false;
                 user.Age = DateTime.Now;
                 user.Gender = Input.Gender;
 

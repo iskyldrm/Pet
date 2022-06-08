@@ -16,7 +16,7 @@ namespace Pet.WEB.Extensions
             services.AddDbContext<SqlDbContext>
             (options => options.UseSqlServer(constr));
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<SqlDbContext>().
+            services.AddIdentity<User, IdentityRole>().AddDefaultUI().AddEntityFrameworkStores<SqlDbContext>().
                 AddDefaultTokenProviders();
 
             services.AddSingleton<IEmailSender, EmailSender>();
@@ -45,7 +45,7 @@ namespace Pet.WEB.Extensions
 
                 //Girilen Mail adresinden sadece bir adet olacak
                 options.User.RequireUniqueEmail = true;
-                options.SignIn.RequireConfirmedAccount = true;
+                //options.SignIn.RequireConfirmedAccount = true;
 
                 options.SignIn.RequireConfirmedEmail = true;
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
