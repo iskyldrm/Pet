@@ -9,7 +9,7 @@ namespace Pet.WEB.Extensions
         {
             #region Mail Message tanimlari
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("cinaliveli5@gmail.com");
+            mailMessage.From = new MailAddress("minikpetler@hotmail.com");
             mailMessage.To.Add(email);
             mailMessage.Body = htmlMessage;
             mailMessage.Subject = subject;
@@ -22,10 +22,10 @@ namespace Pet.WEB.Extensions
 
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new System.Net.NetworkCredential("cinaliveli5@gmail.com", "AliVeli4950");
-            smtpClient.Port = 587;
+            smtpClient.Host = "smtp.office365.com";
+            smtpClient.Credentials = new System.Net.NetworkCredential("minikpetler@hotmail.com", "Kovboy99f.i");
+            smtpClient.Port = 465;
             smtpClient.EnableSsl = true;
-            smtpClient.Host = "smtp.gmail.com";
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             #endregion
 
