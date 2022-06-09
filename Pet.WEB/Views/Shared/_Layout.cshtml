@@ -1,4 +1,4 @@
-﻿ @using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using Pet.Entities.Concrete
 @inject SignInManager<User> _SignInManager
 
@@ -21,16 +21,26 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
+                    @if (_SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
                             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                    </li>
-                    <li class="nav-item d-none d-sm-inline-block">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">minikPetler</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">minikPetler</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </li>
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                                <img src="~/dist/img/Logo.png" class="img-fluid" alt="cat&dog resmi">
+                        </li>
+                    }
+
                 </ul>
                 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">

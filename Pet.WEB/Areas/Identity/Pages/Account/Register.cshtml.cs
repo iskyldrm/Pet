@@ -90,15 +90,14 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool Gender { get; set; }
 
-            [Required(ErrorMessage = "Bu kısım zorunludur")]
+          
             public int CityId { get; set; }
-            [Required(ErrorMessage = "Bu kısım zorunludur")]
+          
             public int DistrictId { get; set; }
 
             [Display(Name = "Doğum tarihiniz")]
             [Required(ErrorMessage = "Bu kısım zorunludur")]
             public DateTime Age { get; set; }
-            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public City CityName { get; set; }
 
             public int? UserStatusId { get; set; }
@@ -137,9 +136,9 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
 
 
         }
-        [Required(ErrorMessage = "Bu kısım zorunludur")]
+        
         public SelectList Sehirler { get; set; }
-        [Required(ErrorMessage = "Bu kısım zorunludur")]
+      
         public SelectList Ilceler { get; set; }
         public async Task OnGetAsync(string returnUrl = null)
         {
