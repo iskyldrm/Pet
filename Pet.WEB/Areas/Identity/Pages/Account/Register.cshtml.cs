@@ -87,20 +87,22 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Display(Name = "Cinsiyet")]
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool Gender { get; set; }
 
-
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public int CityId { get; set; }
-
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public int DistrictId { get; set; }
 
             [Display(Name = "Doğum tarihiniz")]
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public DateTime Age { get; set; }
-
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public City CityName { get; set; }
 
             public int? UserStatusId { get; set; }
-
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool EmailConfirmed { get; set; } = false;
             public string FullAddress { get; set; }
 
@@ -108,7 +110,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             [EmailAddress]
             [Display(Name = "Email adresinizi giriniz")]
             public string Email { get; set; }
@@ -117,7 +119,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Şifrenizi giriniz")]
@@ -127,6 +129,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required(ErrorMessage = "Bu kısım zorunludur")]
             [DataType(DataType.Password)]
             [Display(Name = "Şifrenizi onaylayın")]
             [Compare("Password", ErrorMessage = "Şifreler aynı değil")]
@@ -134,8 +137,9 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
 
 
         }
-
+        [Required(ErrorMessage = "Bu kısım zorunludur")]
         public SelectList Sehirler { get; set; }
+        [Required(ErrorMessage = "Bu kısım zorunludur")]
         public SelectList Ilceler { get; set; }
         public async Task OnGetAsync(string returnUrl = null)
         {
