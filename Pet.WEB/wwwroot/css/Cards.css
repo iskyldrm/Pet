@@ -1,0 +1,150 @@
+/*body {
+    margin: 0;
+    padding: 0;
+    font-family: 'roboto', sans-serif;
+    background-color: #F2F2F2;
+}*/
+
+/*h1 {
+    text-align: center;
+    color: #333333;
+}*/
+
+.cardcontainer {
+    width: 225px;
+    height: 360px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: white;
+    transition: 0.3s;
+}
+
+    .cardcontainer:hover {
+        box-shadow: 0 0 45px gray;
+    }
+
+.photo {
+    height: 225px;
+    width: 100%;
+}
+
+    .photo img {
+        height: 100%;
+        width: 100%;
+    }
+
+.txt1 {
+    margin: auto;
+    text-align: center;
+    font-size: 10px;
+}
+
+.content {
+    width: 80%;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -33px;
+}
+
+.photos {
+    width: 90px;
+    height: 30px;
+    background-color: #E74C3C;
+    color: white;
+    position: relative;
+    top: -30px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.txt4 {
+    font-size: 14px;
+    position: relative;
+    top: 33px;
+}
+
+.txt5 {
+    position: relative;
+    top: 18px;
+    color: #E74C3C;
+    font-size: 12px;
+}
+
+.txt2 {
+    position: relative;
+    top: 5px;
+}
+
+/*.cardcontainer:hover > .photo {
+    height: 200px;
+    animation: move1 0.5s ease both;
+}*/
+
+/*@keyframes move1 {
+    0% {
+        height: 300px
+    }
+
+    100% {
+        height: 200px
+    }
+}*/
+
+/*.cardcontainer:hover > .content {
+    height: 200px;
+}*/
+
+.footerlar {
+    width: 80%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    position: relative;
+    top: -110px;
+}
+
+.btn {
+    border-color:black;
+    position: relative;
+    top: 30px;
+}
+
+#heart {
+    cursor: pointer;
+}
+
+.like {
+    float: right;
+    font-size: 22px;
+    position: relative;
+    top: 30px;
+    color: #333333;
+}
+
+.fa-gratipay {
+    margin-right: 10px;
+    transition: 0.1s;
+}
+
+    .fa-gratipay:hover {
+        color: #E74C3C;
+    }
+
+.txt3 {
+    color: gray;
+    position: relative;
+    top: 18px;
+    font-size: 10px;
+}
+
+.comments {
+    float: right;
+    cursor: pointer;
+}
+
+.fa-clock, .fa-comments {
+    margin-right: 7px;
+}

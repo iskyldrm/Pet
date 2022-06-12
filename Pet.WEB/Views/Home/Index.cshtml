@@ -23,15 +23,17 @@
         .b-example-vr {
           flex-shrink: 0;
           width: 1.5rem;
-          height: 82vh;
+          height: 90vh;
         }
         .li:hover{
             background-color:rgb(78, 245, 6);
             border-radius: 10px;
+            transition:0.3s;
         }
         .liout:hover{
             background-color:rgb(232, 28, 28);
             border-radius: 10px;
+            transition:0.3s;
         }
         .container{
           width: 100%;
@@ -58,7 +60,7 @@
                 {
                     <main class="d-flex flex-nowrap">
       
-                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 250px;">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white" style="width: 250px;">
            
                       <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
                                 <svg class="me-2" width="5" height="32"></svg>
@@ -108,12 +110,6 @@
                         </li>
                       </ul>
                       <hr>
-                      <div >
-                        <a asp-controller="Home" asp-action="Index" class="d-flex align-items-center text-dark text-decoration-none">
-                          <img src="~/dist/img/avatar.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                          <strong class="text-dark">@User.Identity.Name</strong>
-                        </a>
-                      </div>
                     </div>
       
                     <div class="b-example-divider b-example-vr"></div>      
@@ -142,14 +138,48 @@
                 }
 
             </div>
-            <div class="col-8 mt-5 bg-dark text-danger">
-                -------------------------
+            <div class="col-8 mt-5 " >
+                <div class="row">
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                    <div class="col-4">
+                        @await Component.InvokeAsync("Adverts")
+                    </div>
+                </div>
             </div>
-            <div class="col-2 mt-5 text-danger">
-                ----------------------------
+            <div class="col-2 mt-5 ">
+                <div class="row">
+                    <h5>İlginizi çekebilir</h5>
+                </div>
             </div>
+        </div>
         
-    </div>
       
 <script src="sidebars.js"></script>
 <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
