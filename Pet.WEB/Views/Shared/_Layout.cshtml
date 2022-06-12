@@ -19,7 +19,7 @@
     <header>
         <div class="container-fluid">
             <div class="row">
-                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             
                         <div class="navbar-collapse collapse d-sm-inline-flex col-5 justify-content-between">
                             <ul class="navbar-nav flex-grow-1">
@@ -59,9 +59,7 @@
                                 }
                                 else
                                 {
-                                    <li class="nav-item d-none d-sm-inline-block">
-                                        <a class="nav-link text" asp-area="Identity" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
-                                    </li> 
+                                    
                                 }
                             </ul>
                         
@@ -72,8 +70,8 @@
         </div>
     </header>
     
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main">
             @RenderBody()
         </main>
     </div>
