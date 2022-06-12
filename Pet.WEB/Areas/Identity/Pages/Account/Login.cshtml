@@ -8,41 +8,33 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <main class="form-signin w-auto m-auto">
     <div class="container">
+        
         <div class="row">
-           <div class="col-md-4 col-lg-6">
-               <br />
-               <br />
-               <br />
-               <br />
-           </div>
-           <div class="col-md-6 col-lg-6">
-               <br />
-           </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-6 ">
+            
+            <div class="col-6">
                 <img src="~/dist/img/CD.jpg" class="img-fluid" alt="cat&dog resmi">
             </div>
-            <div class="col-md-6 col-lg-6">
-                <section class="vh-100">
+            
+            <div class="col-6">
+                <section>
+                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        <p class="lead fw-bold mb-0 me-3">Giriş yap</p>
+                            <button type="button" class="btn btn-link  mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                             <i class="fab fa-linkedin-in"></i>
+                            </button>
+                    </div>
+                    <div class="divider d-flex align-items-center my-4">
+                            <p class="lead fw-normal mx-0 mb-0">Veya</p>
+                    </div>
                     <form id="account" method="post">
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-bold mb-0 me-3">Giriş yap</p>
-                                <button type="button" class="btn btn-link  mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-twitter"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                 <i class="fab fa-linkedin-in"></i>
-                                </button>
-                        </div>
-                        <div class="divider d-flex align-items-center my-4">
-                                <p class="lead fw-normal mx-0 mb-0">Veya</p>
-                        </div>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-outline w-75 mb-4">
                             <input asp-for="Input.UserName" class="form-control form-control-lg" id="form3Example3" placeholder="Kullanıcı adınızı giriniz"/>
