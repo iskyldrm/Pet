@@ -3,6 +3,30 @@
 @{
     ViewData["Title"] = "Kayıt Ol";
 }
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        $('#DrpSehir').change(function () {
+            var id = $('#DrpSehir').val();
+            $.ajax({
+                url: '/Home/IlceGetir',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#DrpIlce').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#Drpilce').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+            });
+        });
+    });
+</script>*@
+
+
 <div class="container">
     <div class="row">
         <div class="col-4">
@@ -84,7 +108,7 @@
                                 <td>
                                     <div class="form-floating">
                                         @*<select name="authorId" asp-items="Model.Options"></select>*@
-                                        <select asp-for="Input.CityId" class="form-control mb-2"  asp-items="Model.Sehirler">
+                                        <select id="DrpSehir" asp-for="Input.CityId" class="form-control mb-2"  asp-items="Model.Sehirler">
                                             <option value="" selected disabled hidden>Seçiniz</option>
                                         </select>
                                         <label asp-for="Input.CityName"></label>
@@ -92,8 +116,8 @@
                                     </div>
 
                                      <div class="form-floating">
-                                        <select asp-for="Input.DistrictId" class="form-control mb-2"  asp-items="Model.Ilceler">
-                                            <option value="" selected disabled hidden>Seçiniz</option>
+                                        <select id="Drpilce" asp-for="Input.DistrictId" class="form-control mb-2"  asp-items="Model.Ilceler">
+                                            <option id="Drpilce" value="" selected disabled hidden>Seçiniz</option>
                                         </select>
                                         <label asp-for="Input.CityName"></label>
                                         <span asp-validation-for="Input.CityName" class="text-danger"></span>
