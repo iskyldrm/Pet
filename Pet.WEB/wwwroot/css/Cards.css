@@ -1,20 +1,8 @@
-/*body {
-    margin: 0;
-    padding: 0;
-    font-family: 'roboto', sans-serif;
-    background-color: #F2F2F2;
-}*/
-
-/*h1 {
-    text-align: center;
-    color: #333333;
-}*/
-
 .cardcontainer {
-    width: 225px;
-    height: 360px;
-    margin-left:auto;
-    margin-right:auto;
+    width: 200px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: white;
     transition: 0.3s;
 }
@@ -24,7 +12,7 @@
     }
 
 .photo {
-    height: 225px;
+    height: 180px;
     width: 100%;
 }
 
@@ -33,15 +21,9 @@
         width: 100%;
     }
 
-.txt1 {
-    margin: auto;
-    text-align: center;
-    font-size: 10px;
-}
-
 .content {
-    width: 80%;
-    height: 150px;
+    width: 90%;
+    height: 140px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -98,18 +80,18 @@
 
 .footerlar {
     width: 80%;
-    height: 80px;
+    height: 50px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
     position: relative;
-    top: -110px;
+    top: -100px;
 }
 
 .btn {
-    border-color:black;
+    border-color: black;
     position: relative;
-    top: 30px;
+    top: 20px;
 }
 
 #heart {
@@ -118,9 +100,9 @@
 
 .like {
     float: right;
-    font-size: 22px;
+    font-size: 18px;
     position: relative;
-    top: 30px;
+    top: 20px;
     color: #333333;
 }
 
@@ -136,7 +118,7 @@
 .txt3 {
     color: gray;
     position: relative;
-    top: 18px;
+    top: 10px;
     font-size: 10px;
 }
 
