@@ -34,17 +34,17 @@ namespace Pet.WEB.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //public JsonResult IlceGetir(int p)
-        //{
-        //    var ilceler = (from x in sqlDb.Districts
-        //                   join y in sqlDb.Cities on x.City.Id equals y.Id
-        //                   where x.City.Id == p
-        //                   select new
-        //                   {
-        //                       Text = x.DistrictName,
-        //                       Value = x.Id.ToString()
-        //                   }).ToList();
-        //    return Json(ilceler,JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult IlceGetir(int p)
+        {
+            var ilceler = (from x in sqlDb.Districts
+                           join y in sqlDb.Cities on x.City.Id equals y.Id
+                           where x.City.Id == p
+                           select new
+                           {
+                               Text = x.DistrictName,
+                               Value = x.Id.ToString()
+                           }).ToList();
+            return Json(ilceler, JsonRequestBehavior.AllowGet);
+        }
     }
 }

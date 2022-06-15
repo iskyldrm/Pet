@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Kayıt Ol";
 }
-@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
     $(function () {
@@ -16,7 +17,7 @@
                 dataType: "Json",
                 success: function (data) {
                     console.log(data);
-                    $('#DrpIlce').empty();
+                    $('#Drpilce').empty();
                     for (var i = 0; i < data.length; i++) {
                         $('#Drpilce').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
                     }
@@ -24,7 +25,7 @@
             });
         });
     });
-</script>*@
+</script>
 
 
 <div class="container">
