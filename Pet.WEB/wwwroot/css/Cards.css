@@ -91,7 +91,7 @@
 .btn {
     border-color: black;
     position: relative;
-    top: 20px;
+    top: 10px;
 }
 
 #heart {
@@ -119,7 +119,7 @@
     color: gray;
     position: relative;
     top: 10px;
-    font-size: 10px;
+    font-size: 7px;
 }
 
 .comments {
@@ -128,5 +128,5 @@
 }
 
 .fa-clock, .fa-comments {
-    margin-right: 7px;
+    margin-right: 0px;
 }
