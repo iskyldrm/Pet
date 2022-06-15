@@ -19,18 +19,18 @@ namespace Pet.DAL.Concrete
             return db.SaveChanges();
         }
 
-        public int Delete(TEntity input)
+        public virtual int Delete(TEntity input)
         {
             db.Set<TEntity>().Remove(input);
             return db.SaveChanges();
         }
 
-        public TEntity Find(int id)
+        public virtual TEntity Find(int id)
         {
             return db.Set<TEntity>().Find(id);
         }
 
-        public IList<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public virtual IList<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             if (filter == null)
             {
@@ -44,7 +44,7 @@ namespace Pet.DAL.Concrete
 
 
 
-        public IQueryable<TEntity> GetAllInclude(Expression<Func<TEntity, bool>> filter = null, params Expression<Func<TEntity, object>>[] include)
+        public virtual IQueryable<TEntity> GetAllInclude(Expression<Func<TEntity, bool>> filter = null, params Expression<Func<TEntity, object>>[] include)
         {
             IQueryable<TEntity> query;
 
@@ -58,7 +58,7 @@ namespace Pet.DAL.Concrete
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
         }
-        public int Update(TEntity input)
+        public virtual int Update(TEntity input)
         {
             var result = db.Entry<TEntity>(input);
             result.State = EntityState.Modified;

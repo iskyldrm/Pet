@@ -10,19 +10,16 @@
     $(function () {
         $('#DrpSehir').change(function () {
             var id = $('#DrpSehir').val();
-            $.ajax({
-                url: '/Home/IlceGetir',
-                data: { p: id },
-                type: "POST",
-                dataType: "Json",
-                success: function (data) {
-                    console.log(data);
-                    $('#Drpilce').empty();
+            var url = 'https://localhost:7239/api/CityApi/GetDistrict?CityId='+id
+            
+            console.log(url);
+             $.get(url, function(data, status){
+                 console.log(data);
+                     $('#Drpilce').empty();
                     for (var i = 0; i < data.length; i++) {
-                        $('#Drpilce').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        $('#Drpilce').append("<option value='" + data[i].id + "'>" + data[i].districtName + "</Option>");
                     }
-                }
-            });
+                  });
         });
     });
 </script>

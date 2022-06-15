@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Pet.BL.Abstract;
+using Pet.BL.Concrete;
 using Pet.DAL.Abstract;
 using Pet.DAL.Concrete;
 using Pet.Entities.Concrete;
@@ -21,8 +23,9 @@ namespace Pet.WEB.Extensions
 
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddScoped<IdentityUser, User>();
-            services.AddScoped<ICityDAL, CityDAL>();
-            services.AddScoped<IDistrictDAL, DistrictDAL>();
+            services.AddScoped<ICityManager, CityManager>();
+            services.AddScoped<IDistrictManager, DistrictManager>();
+
 
             return services;
         }

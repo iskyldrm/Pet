@@ -4,8 +4,8 @@ namespace Pet.DAL.Abstract
 {
     public interface IRepositoryBase<TEntity> where TEntity : class, new()
     {
-        public int Add(TEntity input);
-        public int Update(TEntity input);
+        public  int  Add(TEntity input);
+        public   int Update(TEntity input);
         public int Delete(TEntity input);
 
         public TEntity Find(int id);

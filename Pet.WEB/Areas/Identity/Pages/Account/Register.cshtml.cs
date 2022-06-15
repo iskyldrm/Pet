@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Pet.BL.Abstract;
 using Pet.DAL.Abstract;
 using Pet.Entities.Concrete;
 using System.ComponentModel.DataAnnotations;
@@ -25,8 +26,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IDistrictDAL _districtDAL;
-        private readonly ICityDAL _cityDAL;
+        private readonly IDistrictManager _districtManager;
+        private readonly ICityManager _cityManager;
 
         public RegisterModel(
             UserManager<User> userManager,
@@ -34,8 +35,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IDistrictDAL districtDAL,
-            ICityDAL cityDAL)
+            IDistrictManager districtManager,
+            ICityManager cityDAL)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,8 +44,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _districtDAL = districtDAL;
-            this._cityDAL = cityDAL;
+            _districtManager = districtManager;
+            this._cityManager = cityDAL;
         }
 
         /// <summary>
@@ -142,8 +143,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
         public SelectList Ilceler { get; set; }
         public async Task OnGetAsync(string returnUrl = null)
         {
-            Sehirler = new SelectList(_cityDAL.GetAll(), nameof(City.Id), nameof(City.CityName));
-            Ilceler = new SelectList(_districtDAL.GetAll(), nameof(District.Id), nameof(District.DistrictName));
+            Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
+            //Ilceler = new SelectList(_districtManager.GetAll(), nameof(District.Id), nameof(District.DistrictName));
 
 
             ReturnUrl = returnUrl;
@@ -211,8 +212,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 }
             }
 
-            Sehirler = new SelectList(_cityDAL.GetAll(), nameof(City.Id), nameof(City.CityName));
-            Ilceler = new SelectList(_districtDAL.GetAll(), nameof(District.Id), nameof(District.DistrictName));
+            Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
+            Ilceler = new SelectList(_districtManager.GetAll(), nameof(District.Id), nameof(District.DistrictName));
             return Page();
 
 

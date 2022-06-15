@@ -2,7 +2,7 @@
 using Pet.Entities.Context;
 using Pet.WEB.Models;
 using System.Diagnostics;
-using System.Web.Mvc;
+
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 using JsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
 
@@ -34,7 +34,8 @@ namespace Pet.WEB.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public JsonResult IlceGetir(int p)
+
+        public IActionResult IlceGetir(int p)
         {
             var ilceler = (from x in sqlDb.Districts
                            join y in sqlDb.Cities on x.City.Id equals y.Id
@@ -44,7 +45,7 @@ namespace Pet.WEB.Controllers
                                Text = x.DistrictName,
                                Value = x.Id.ToString()
                            }).ToList();
-            return Json(ilceler, JsonRequestBehavior.AllowGet);
+            return Ok(ilceler);
         }
     }
 }
