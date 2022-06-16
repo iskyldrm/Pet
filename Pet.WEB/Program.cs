@@ -45,6 +45,11 @@ app.MapAreaControllerRoute(
                         );
 app.MapAreaControllerRoute(
             name: "areas",
+            areaName: "Adverts",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                        );
+app.MapAreaControllerRoute(
+            name: "areas",
             areaName: "Profile",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                         );

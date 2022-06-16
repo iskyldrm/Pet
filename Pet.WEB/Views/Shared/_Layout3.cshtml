@@ -1,0 +1,215 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Pet.Entities.Concrete
+@inject SignInManager<User> _SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pet.WEB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Pet.WEB.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="css/Pulings/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/pulings/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/css/pulings/cssp/alt/adminlte.components.css" />
+    <style>
+
+
+        .body {
+            overflow: hidden;
+            height: 0;
+            width: 0;
+        }
+        ::-webkit-scrollbar {
+        display: none;
+        visibility: hidden;
+        opacity: 0
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 80vh;
+        }
+
+        .li:hover {
+            background-color: rgb(78, 245, 6);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .liout:hover {
+            background-color: rgb(232, 28, 28);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .container {
+            width: 100%;
+            padding-right: var(--bs-gutter-x, 0.75rem);
+            padding-left: var(--bs-gutter-x, 0.75rem);
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .row {
+            --bs-gutter-x: 0rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: calc(var(--bs-gutter-y) * -1);
+            margin-right: calc(var(--bs-gutter-x) * -.5);
+            margin-left: calc(var(--bs-gutter-x) * -.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom ">
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex col-5 justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <li>
+                                <a asp-controller="Home" asp-action="Index"><img src="~/dist/img/Logo.png" class="img-fluid" alt="cat&dog resmi"></a>
+
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="navbar-collapse collapse d-sm-inline-flex col-7 justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="#" class="nav-link">
+                                    <img src="/dist/img/cat.png" /> Kedi
+                                </a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="#" class="nav-link">
+                                    <img src="/dist/img/dog.png" /> Köpek
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav flex-grow">
+                            @if (!_SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item d-none d-sm-inline-block">
+                                    <a class="nav-link text" asp-area="Identity" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                                </li>
+
+                                <li class="nav-item d-none d-sm-inline-block">
+                                    <a class="nav-link text" asp-area="Identity" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="pr-3">
+                                        <a asp-controller="Home" asp-action="Index" class="d-flex align-items-center text-dark text-decoration-none">
+                                            <img src="~/dist/img/avatar.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                                            <strong class="text-dark">@User.Identity.Name</strong>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+    <aside>
+        <div class="row">
+            <div class="col-2">
+                <main class="d-flex flex-nowrap">
+
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white" style="width: 250px;">
+
+                        <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
+                            <svg class="me-2" width="5" height="32"></svg>
+                            <span class="fs-4 text-black-50">
+                                <img src="/dist/img/cat.png" />
+                                minikPETler
+                                <img src="/dist/img/dog.png" />
+                            </span>
+                        </a>
+                        <hr>
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item li">
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-dark" aria-current="page">
+                                    <svg class="pe-none me-2 " width="16" height="16"></svg>
+                                    Ana sayfam
+                                </a>
+                            </li>
+                            <li class="nav-item li">
+                                <a asp-area="Profile" asp-controller="UserProfile" asp-action="MyProfile" class="nav-link text-dark">
+                                    <svg class="pe-none me-2" width="16" height="16"></svg>
+                                    Profilim
+                                </a>
+                            </li>
+                            <li class="nav-item li">
+                                <a asp-area="Profile" asp-controller="UserProfile" asp-action="Favorites" class="nav-link text-dark">
+                                    <svg class="pe-none me-2" width="16" height="16"></svg>
+                                    Favoriler
+                                </a>
+                            </li>
+                            <li class="nav-item li">
+                                <a asp-area="Profile" asp-controller="UserProfile" asp-action="MyMassage" class="nav-link text-dark">
+                                    <svg class="pe-none me-2" width="16" height="16"></svg>
+                                    Mesajlarım
+                                </a>
+                            </li>
+                            <li class="nav-item li">
+                                <a asp-area="Profile" asp-controller="UserProfile" asp-action="Settings" class="nav-link text-dark">
+                                    <svg class="pe-none me-2" width="16" height="16"></svg>
+                                    Ayarlar
+                                </a>
+                            </li>
+                            <li class="nav-item liout">
+                                <a asp-area="Identity" asp-controller="Account" asp-action="Logout" class="nav-link text-dark">
+                                    <svg class="pe-none me-2" width="16" height="16"></svg>
+                                    Çıkış yap
+                                </a>
+                            </li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <div class="b-example-divider b-example-vr"></div>
+                </main>
+            </div>
+            <div class="col-10">
+                <div>
+                    <main role="main">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - İsak Yıldırım - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/css/pulings/jquery/jquery.min.js"></script>
+    <script src="js/adminlte.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
