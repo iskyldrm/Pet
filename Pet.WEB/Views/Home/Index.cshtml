@@ -21,7 +21,13 @@
         .body{
             height:0;
             width:0;
+            overflow: hidden;
         }
+        ::-webkit-scrollbar {
+        display: none;
+        visibility: hidden;
+        opacity: 0
+     }
         .b-example-vr {
           flex-shrink: 0;
           width: 1.5rem;
@@ -75,7 +81,7 @@
                       <hr>
                       <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item li">
-                          <a  asp-area="Profile" asp-controller="UserProfile" asp-action="UserMainPage" class="nav-link text-dark" aria-current="page">
+                          <a  asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-dark" aria-current="page">
                             <svg class="pe-none me-2 " width="16" height="16"></svg>
                             Ana sayfam
                           </a>
