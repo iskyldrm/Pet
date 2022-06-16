@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pet.Entities.Concrete;
+using System.Reflection;
 
 namespace Pet.Entities.Context
 {
@@ -17,7 +18,7 @@ namespace Pet.Entities.Context
         public DbSet<Kind> Kinds { get; set; }
         public DbSet<Racial> Racials { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserStatus> UserStatuses { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public SqlDbContext()
         {
 
@@ -34,6 +35,7 @@ namespace Pet.Entities.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

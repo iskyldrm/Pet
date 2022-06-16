@@ -18,7 +18,7 @@ namespace Pet.WEB.Extensions
             services.AddDbContext<SqlDbContext>
             (options => options.UseSqlServer(constr));
 
-            services.AddIdentity<User, IdentityRole>().AddDefaultUI().AddEntityFrameworkStores<SqlDbContext>().
+            services.AddIdentity<User, UserRole>().AddDefaultUI().AddEntityFrameworkStores<SqlDbContext>().
                 AddDefaultTokenProviders();
 
             services.AddSingleton<IEmailSender, EmailSender>();

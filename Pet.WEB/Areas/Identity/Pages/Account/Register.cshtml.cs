@@ -101,7 +101,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             public DateTime Age { get; set; }
             public City CityName { get; set; }
 
-            public int? UserStatusId { get; set; }
             [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool EmailConfirmed { get; set; } = false;
             public string FullAddress { get; set; }
@@ -170,7 +169,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
                 user.Name = Input.Name;
                 user.UserName = Input.UserName;
-                user.UserStatusId = 1;
                 user.EmailConfirmed = Input.EmailConfirmed;
                 //user.EmailConfirmed = false;
                 user.Age = DateTime.Now;

@@ -14,6 +14,7 @@ namespace Pet.Entities.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -85,22 +86,6 @@ namespace Pet.Entities.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Racials", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserStatuses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,7 +169,6 @@ namespace Pet.Entities.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Age = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserStatusId = table.Column<int>(type: "int", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -210,12 +194,6 @@ namespace Pet.Entities.Migrations
                         name: "FK_AspNetUsers_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_UserStatuses_UserStatusId",
-                        column: x => x.UserStatusId,
-                        principalTable: "UserStatuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -410,6 +388,7 @@ namespace Pet.Entities.Migrations
                     LivingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImageType = table.Column<int>(type: "int", nullable: false),
                     AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -449,6 +428,19 @@ namespace Pet.Entities.Migrations
                         principalTable: "Favorites",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "4f283820-ccad-4bee-b58a-ebe51d90dce9", "a4945ac9-a2cf-442a-ba8c-1e279af8a11a", "UserRole", "Editor", null },
+                    { "82e7ede2-53fd-43bd-b2b2-dc984ff2bc3a", "3008cd8f-4ae7-402a-93d9-04440a242387", "UserRole", "MidUser", null },
+                    { "8ad09be5-c448-4840-bc49-9b57d63671bd", "86e859ae-9a74-4275-bae1-678db95346cf", "UserRole", "BasicUser", null },
+                    { "943a48f8-fc79-4cf4-b066-6eb41c7ca241", "3cc29de4-330e-43f2-8493-936d8ea12f2f", "UserRole", "HighUser", null },
+                    { "c2012b17-2936-4642-89db-080d959b8dcf", "aba2f4cb-ed7b-4cd6-8b17-8163ca76fa85", "UserRole", "Admin", null },
+                    { "da8c5292-d3c1-4136-95d6-dd19dfc8d162", "cd0c377e-6698-4215-8645-a30f0d602f86", "UserRole", "Creator", null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -507,11 +499,6 @@ namespace Pet.Entities.Migrations
                 name: "IX_AspNetUsers_AddressId",
                 table: "AspNetUsers",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_UserStatusId",
-                table: "AspNetUsers",
-                column: "UserStatusId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -615,9 +602,6 @@ namespace Pet.Entities.Migrations
 
             migrationBuilder.DropTable(
                 name: "Addresses");
-
-            migrationBuilder.DropTable(
-                name: "UserStatuses");
 
             migrationBuilder.DropTable(
                 name: "Districts");

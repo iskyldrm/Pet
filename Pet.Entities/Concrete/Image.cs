@@ -16,6 +16,13 @@ namespace Pet.Entities.Concrete
         public virtual Living? Living { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
+        public ImageType ImageType { get; set; }
     }
+
+    public enum ImageType
+        {
+            User,
+            Living
+        }
 }
 

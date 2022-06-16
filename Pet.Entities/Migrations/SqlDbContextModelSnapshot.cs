@@ -46,6 +46,10 @@ namespace Pet.Entities.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -62,6 +66,8 @@ namespace Pet.Entities.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -364,6 +370,9 @@ namespace Pet.Entities.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ImageType")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("LivingId")
                         .HasColumnType("uniqueidentifier");
 
@@ -559,9 +568,6 @@ namespace Pet.Entities.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("UserStatusId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
@@ -574,35 +580,52 @@ namespace Pet.Entities.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("UserStatusId");
-
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Pet.Entities.Concrete.UserStatus", b =>
+            modelBuilder.Entity("Pet.Entities.Concrete.UserRole", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasDiscriminator().HasValue("UserRole");
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserStatuses");
+                    b.HasData(
+                        new
+                        {
+                            Id = "c2012b17-2936-4642-89db-080d959b8dcf",
+                            ConcurrencyStamp = "aba2f4cb-ed7b-4cd6-8b17-8163ca76fa85",
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = "8ad09be5-c448-4840-bc49-9b57d63671bd",
+                            ConcurrencyStamp = "86e859ae-9a74-4275-bae1-678db95346cf",
+                            Name = "BasicUser"
+                        },
+                        new
+                        {
+                            Id = "82e7ede2-53fd-43bd-b2b2-dc984ff2bc3a",
+                            ConcurrencyStamp = "3008cd8f-4ae7-402a-93d9-04440a242387",
+                            Name = "MidUser"
+                        },
+                        new
+                        {
+                            Id = "943a48f8-fc79-4cf4-b066-6eb41c7ca241",
+                            ConcurrencyStamp = "3cc29de4-330e-43f2-8493-936d8ea12f2f",
+                            Name = "HighUser"
+                        },
+                        new
+                        {
+                            Id = "da8c5292-d3c1-4136-95d6-dd19dfc8d162",
+                            ConcurrencyStamp = "cd0c377e-6698-4215-8645-a30f0d602f86",
+                            Name = "Creator"
+                        },
+                        new
+                        {
+                            Id = "4f283820-ccad-4bee-b58a-ebe51d90dce9",
+                            ConcurrencyStamp = "a4945ac9-a2cf-442a-ba8c-1e279af8a11a",
+                            Name = "Editor"
+                        });
                 });
 
             modelBuilder.Entity("FavoriteUser", b =>
@@ -781,15 +804,7 @@ namespace Pet.Entities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pet.Entities.Concrete.UserStatus", "UserStatus")
-                        .WithMany()
-                        .HasForeignKey("UserStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Addresss");
-
-                    b.Navigation("UserStatus");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
