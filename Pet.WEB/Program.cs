@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Pet.WEB.Extensions;
+using Pet.WEB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -11,6 +13,8 @@ builder.Services.AddHealthChecks();
 //{
 //    x.SignIn.RequireConfirmedAccount = true;
 //});
+builder.Services.Configure<CloudinarySettings>(
+    builder.Configuration.GetSection("CloudOptions"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

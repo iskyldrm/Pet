@@ -358,7 +358,7 @@ namespace Pet.Entities.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdvertId")
+                    b.Property<Guid>("AdvertId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
@@ -369,9 +369,6 @@ namespace Pet.Entities.Migrations
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ImageType")
-                        .HasColumnType("int");
 
                     b.Property<Guid?>("LivingId")
                         .HasColumnType("uniqueidentifier");
@@ -597,38 +594,38 @@ namespace Pet.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4b4205fc-92b1-4c50-8ccf-3b7804d40ff3",
-                            ConcurrencyStamp = "261d3a1a-a39f-4988-bf0a-3f91b4b1c7a4",
+                            Id = "f5e2b56e-c051-49fe-8ec5-b1b607195e6c",
+                            ConcurrencyStamp = "8131c39c-611f-4414-930f-8b07a4dad0dd",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = "e31cda44-d553-4556-bb29-ce5e58ff7d7b",
-                            ConcurrencyStamp = "43ee973f-9c63-42bc-a265-6fada2bc5cbe",
+                            Id = "ac043e80-435c-450c-b17a-017ba9615b65",
+                            ConcurrencyStamp = "2a77249b-5434-4a54-ae88-b53e9fc30bcf",
                             Name = "BasicUser"
                         },
                         new
                         {
-                            Id = "98b769b7-bba4-42a2-94f2-a1fe9d4ae5cf",
-                            ConcurrencyStamp = "c6ddeee2-5383-46d4-b195-f35eb320d6db",
+                            Id = "3f989a12-e833-4f56-815b-daa6a20b5e2e",
+                            ConcurrencyStamp = "7be8ef49-4290-4c8f-9268-10d66ec29520",
                             Name = "MidUser"
                         },
                         new
                         {
-                            Id = "145d083f-78f5-435e-8d27-637942164c3c",
-                            ConcurrencyStamp = "60d97cee-c27f-42d6-9430-f3edb871bb3f",
+                            Id = "6cc2feb3-e887-4987-a2e3-13656520a36d",
+                            ConcurrencyStamp = "7d22a2ef-437b-48cf-873e-caad17f88809",
                             Name = "HighUser"
                         },
                         new
                         {
-                            Id = "8d94a6a1-7908-4f6e-a1c3-b2fcc9981c34",
-                            ConcurrencyStamp = "b38638e6-09f7-4837-9cd0-cc4da396c8b9",
+                            Id = "f337c6e9-f9f4-444c-9f9a-e24e642c7eaa",
+                            ConcurrencyStamp = "304d74d5-c452-43f3-9d9c-1d6ca1d6b9c3",
                             Name = "Creator"
                         },
                         new
                         {
-                            Id = "ef56f184-81e0-418d-a3b3-405ab859316c",
-                            ConcurrencyStamp = "1dda93ad-22e1-4f1d-8954-f6e67ad035b8",
+                            Id = "42f6cbd8-3607-4690-8828-04d66e4df3f6",
+                            ConcurrencyStamp = "e71a381c-1408-4e9f-b996-a5eb90154ad9",
                             Name = "Editor"
                         });
                 });
@@ -759,13 +756,17 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Image", b =>
                 {
-                    b.HasOne("Pet.Entities.Concrete.Advert", null)
+                    b.HasOne("Pet.Entities.Concrete.Advert", "Advert")
                         .WithMany("Image")
-                        .HasForeignKey("AdvertId");
+                        .HasForeignKey("AdvertId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pet.Entities.Concrete.Living", "Living")
                         .WithMany("Images")
                         .HasForeignKey("LivingId");
+
+                    b.Navigation("Advert");
 
                     b.Navigation("Living");
                 });

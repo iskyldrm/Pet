@@ -102,8 +102,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             public DateTime Age { get; set; }
             public City CityName { get; set; }
 
-            public Image Imagem { get; set; }
-
             [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool EmailConfirmed { get; set; } = false;
             public string FullAddress { get; set; }
@@ -160,12 +158,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-                var ımage = new Image();
-                Input.Imagem = ımage;
-                ımage.Url = "deneme";
-                ımage.ImagePath = Input.ImageId;
-                ımage.ImageType = ImageType.Living;
-                ımage.ImageDescription = "deneme";
                 var address = new Address();
                 address.CityId = Input.CityId;
                 address.DistrictId = Input.DistrictId;
@@ -174,7 +166,6 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 address.UpdateTime = DateTime.Now;
                 address.FullAdsress = Input.FullAddress;
                 user.Addresss = address;
-                user.Image = ımage;
                 user.LastName = Input.LastName;
                 user.Name = Input.Name;
                 user.UserName = Input.UserName;

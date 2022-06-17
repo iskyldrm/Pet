@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Pet.BL.Abstract;
 using Pet.BL.Concrete;
 using Pet.DAL.Abstract;
 using Pet.DAL.Concrete;
 using Pet.Entities.Concrete;
 using Pet.Entities.Context;
+using Pet.WEB.Models;
+using System.Configuration;
 
 namespace Pet.WEB.Extensions
 {
