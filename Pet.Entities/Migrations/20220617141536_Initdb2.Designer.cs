@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pet.Entities.Context;
 
@@ -11,9 +12,10 @@ using Pet.Entities.Context;
 namespace Pet.Entities.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220617141536_Initdb2")]
+    partial class Initdb2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,9 +229,6 @@ namespace Pet.Entities.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("LivingId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("PetState")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -244,8 +243,6 @@ namespace Pet.Entities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("LivingId");
 
                     b.HasIndex("UserId");
 
@@ -594,38 +591,38 @@ namespace Pet.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a0a4ebe2-5d49-4b1a-ace9-f6e2aa9e6d54",
-                            ConcurrencyStamp = "d623babd-aeba-4544-91b7-b40376448edc",
+                            Id = "2010dc39-9bec-4e25-8689-95cb3fbf2a6b",
+                            ConcurrencyStamp = "c12c723c-c22c-4383-87ac-0616e89e3d37",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = "b81ef1e2-3d74-4695-84ef-3b596503963b",
-                            ConcurrencyStamp = "cf0a4b56-d93f-4bc0-867f-e6c80a2d888c",
+                            Id = "3d6e984b-bf88-4a45-83c6-fa370d1b4a46",
+                            ConcurrencyStamp = "7e7d28c3-3334-4bb6-915f-8fbb541253f0",
                             Name = "BasicUser"
                         },
                         new
                         {
-                            Id = "3fa0ff65-960c-4907-ba1d-cb8215742c78",
-                            ConcurrencyStamp = "781aec46-4663-48a3-8866-affbed7459cd",
+                            Id = "10575fb3-cb54-44ac-bcff-27f647ae7d48",
+                            ConcurrencyStamp = "29b87fe1-f8aa-44e8-a43b-11795185cbbd",
                             Name = "MidUser"
                         },
                         new
                         {
-                            Id = "e3351050-dd2e-4c54-a8ba-bf1d9b322f61",
-                            ConcurrencyStamp = "cc8aad1d-6ac3-4be9-9c0e-ee18214d32dc",
+                            Id = "9385c002-11ef-41ad-9f35-06278e2eceba",
+                            ConcurrencyStamp = "b1850340-9e95-4bc9-b22f-494f0e0296af",
                             Name = "HighUser"
                         },
                         new
                         {
-                            Id = "57367e34-314a-4dcc-a40f-3b2bf3148263",
-                            ConcurrencyStamp = "014b4c78-6ca0-4865-be8c-103d6fe3a589",
+                            Id = "995868fc-72b4-4b7f-92cd-4fc2002d049a",
+                            ConcurrencyStamp = "6e7d7040-5e6f-48e2-87d4-fced1c0c3ec9",
                             Name = "Creator"
                         },
                         new
                         {
-                            Id = "f4e682ca-1615-4e36-9042-4c23bb46f88b",
-                            ConcurrencyStamp = "50722247-8305-4f9d-a1de-c19325d827c4",
+                            Id = "ff670f64-b0e0-4587-8ac7-d4ad07c9ab13",
+                            ConcurrencyStamp = "3d5cc9c7-7d85-4b15-836c-4f09f1fcafa2",
                             Name = "Editor"
                         });
                 });
@@ -723,10 +720,6 @@ namespace Pet.Entities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pet.Entities.Concrete.Living", "Living")
-                        .WithMany()
-                        .HasForeignKey("LivingId");
-
                     b.HasOne("Pet.Entities.Concrete.User", "User")
                         .WithMany("Advert")
                         .HasForeignKey("UserId")
@@ -734,8 +727,6 @@ namespace Pet.Entities.Migrations
                         .IsRequired();
 
                     b.Navigation("Address");
-
-                    b.Navigation("Living");
 
                     b.Navigation("User");
                 });

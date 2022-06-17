@@ -13,8 +13,7 @@ builder.Services.AddHealthChecks();
 //{
 //    x.SignIn.RequireConfirmedAccount = true;
 //});
-builder.Services.Configure<CloudinarySettings>(
-    builder.Configuration.GetSection("CloudOptions"));
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudOptions"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -46,6 +45,11 @@ app.UseEndpoints(endpoints =>
 app.MapAreaControllerRoute(
             name: "areas",
             areaName:"Identity",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                        );
+app.MapAreaControllerRoute(
+            name: "areas",
+            areaName: "Pet",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                         );
 app.MapAreaControllerRoute(

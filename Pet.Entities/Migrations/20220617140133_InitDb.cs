@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pet.Entities.Migrations
 {
-    public partial class Initdb : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -412,12 +412,12 @@ namespace Pet.Entities.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3f989a12-e833-4f56-815b-daa6a20b5e2e", "7be8ef49-4290-4c8f-9268-10d66ec29520", "UserRole", "MidUser", null },
-                    { "42f6cbd8-3607-4690-8828-04d66e4df3f6", "e71a381c-1408-4e9f-b996-a5eb90154ad9", "UserRole", "Editor", null },
-                    { "6cc2feb3-e887-4987-a2e3-13656520a36d", "7d22a2ef-437b-48cf-873e-caad17f88809", "UserRole", "HighUser", null },
-                    { "ac043e80-435c-450c-b17a-017ba9615b65", "2a77249b-5434-4a54-ae88-b53e9fc30bcf", "UserRole", "BasicUser", null },
-                    { "f337c6e9-f9f4-444c-9f9a-e24e642c7eaa", "304d74d5-c452-43f3-9d9c-1d6ca1d6b9c3", "UserRole", "Creator", null },
-                    { "f5e2b56e-c051-49fe-8ec5-b1b607195e6c", "8131c39c-611f-4414-930f-8b07a4dad0dd", "UserRole", "Admin", null }
+                    { "208acc29-d90c-4b30-977d-203228338612", "b3f47778-6c6b-4608-8f78-2e4b99359f23", "UserRole", "Creator", null },
+                    { "27a47ab7-889c-4bda-870e-e0a0176ebb8f", "8358f455-e550-4c89-9f86-353488c3ad3f", "UserRole", "MidUser", null },
+                    { "49b7805a-f62a-4b5f-907b-6002dd8299e8", "dc445c9f-1b20-4112-b9bb-761d1b00f58e", "UserRole", "BasicUser", null },
+                    { "a1a80deb-fcaa-4bfe-adba-f1c41f521e1b", "ee30d596-7dad-474b-b21b-7c2bf8f06583", "UserRole", "Editor", null },
+                    { "c382ac19-5153-468d-b727-08773397b5bb", "1b31a7dc-ac6b-442c-bdce-8584f4e47dde", "UserRole", "Admin", null },
+                    { "f366c497-2cff-455b-ae70-dcc0fc6cc7ae", "ca932052-65ff-461b-8eec-1d97cd4ed324", "UserRole", "HighUser", null }
                 });
 
             migrationBuilder.CreateIndex(
