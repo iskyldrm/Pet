@@ -15,8 +15,6 @@ namespace Pet.Entities.Concrete
         public byte LivingAge { get; set; }
         public int KindId { get; set; }
         public Kind Kind { get; set; }
-        public int RacialId { get; set; }
-        public Racial Racial { get; set; }
         public int GenusId { get; set; }
         public Genus Genus { get; set; }
         public List<Image> Images { get; set; }

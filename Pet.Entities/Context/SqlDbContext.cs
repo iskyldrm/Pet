@@ -16,7 +16,6 @@ namespace Pet.Entities.Context
         public DbSet<Genus> Genus { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Kind> Kinds { get; set; }
-        public DbSet<Racial> Racials { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public SqlDbContext()
