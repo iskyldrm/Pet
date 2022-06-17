@@ -7,17 +7,16 @@ namespace Pet.Entities.Concrete
         public int Id { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
-        public virtual List<Living> Livings { get; set; }
-        public int KindTeam { get; set; }
+        public virtual List<Living>? Livings { get; set; }
         public Orders Team { get; set; }
-        public int KindFamilya { get; set; }
         public Families Familya { get; set; }
     }
 
     public enum Orders
     {
         carnivorous, //Etçil
-        herbivorous  //Otçul
+        herbivorous,  //Otçul
+        Omnivor    // Hepçil
     }
     public enum Families
     {
