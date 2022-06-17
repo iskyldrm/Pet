@@ -161,6 +161,98 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Adverts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AdvertNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvertType = table.Column<int>(type: "int", nullable: false),
+                    PetState = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adverts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adverts_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Favorites",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Discription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favorites", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Favorites_Adverts_AdvertId",
+                        column: x => x.AdvertId,
+                        principalTable: "Adverts",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -169,6 +261,7 @@ namespace Pet.Entities.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Age = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -199,101 +292,6 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adverts",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdvertNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertType = table.Column<int>(type: "int", nullable: false),
-                    PetState = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adverts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adverts_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Adverts_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
@@ -309,6 +307,30 @@ namespace Pet.Entities.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FavoriteUser",
+                columns: table => new
+                {
+                    FavoritesId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteUser", x => new { x.FavoritesId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_FavoriteUser_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_FavoriteUser_Favorites_FavoritesId",
+                        column: x => x.FavoritesId,
+                        principalTable: "Favorites",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -357,27 +379,6 @@ namespace Pet.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Favorites",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Discription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Favorites", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Favorites_Adverts_AdvertId",
-                        column: x => x.AdvertId,
-                        principalTable: "Adverts",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -406,41 +407,17 @@ namespace Pet.Entities.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "FavoriteUser",
-                columns: table => new
-                {
-                    FavoritesId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FavoriteUser", x => new { x.FavoritesId, x.UsersId });
-                    table.ForeignKey(
-                        name: "FK_FavoriteUser_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_FavoriteUser_Favorites_FavoritesId",
-                        column: x => x.FavoritesId,
-                        principalTable: "Favorites",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4f283820-ccad-4bee-b58a-ebe51d90dce9", "a4945ac9-a2cf-442a-ba8c-1e279af8a11a", "UserRole", "Editor", null },
-                    { "82e7ede2-53fd-43bd-b2b2-dc984ff2bc3a", "3008cd8f-4ae7-402a-93d9-04440a242387", "UserRole", "MidUser", null },
-                    { "8ad09be5-c448-4840-bc49-9b57d63671bd", "86e859ae-9a74-4275-bae1-678db95346cf", "UserRole", "BasicUser", null },
-                    { "943a48f8-fc79-4cf4-b066-6eb41c7ca241", "3cc29de4-330e-43f2-8493-936d8ea12f2f", "UserRole", "HighUser", null },
-                    { "c2012b17-2936-4642-89db-080d959b8dcf", "aba2f4cb-ed7b-4cd6-8b17-8163ca76fa85", "UserRole", "Admin", null },
-                    { "da8c5292-d3c1-4136-95d6-dd19dfc8d162", "cd0c377e-6698-4215-8645-a30f0d602f86", "UserRole", "Creator", null }
+                    { "145d083f-78f5-435e-8d27-637942164c3c", "60d97cee-c27f-42d6-9430-f3edb871bb3f", "UserRole", "HighUser", null },
+                    { "4b4205fc-92b1-4c50-8ccf-3b7804d40ff3", "261d3a1a-a39f-4988-bf0a-3f91b4b1c7a4", "UserRole", "Admin", null },
+                    { "8d94a6a1-7908-4f6e-a1c3-b2fcc9981c34", "b38638e6-09f7-4837-9cd0-cc4da396c8b9", "UserRole", "Creator", null },
+                    { "98b769b7-bba4-42a2-94f2-a1fe9d4ae5cf", "c6ddeee2-5383-46d4-b195-f35eb320d6db", "UserRole", "MidUser", null },
+                    { "e31cda44-d553-4556-bb29-ce5e58ff7d7b", "43ee973f-9c63-42bc-a265-6fada2bc5cbe", "UserRole", "BasicUser", null },
+                    { "ef56f184-81e0-418d-a3b3-405ab859316c", "1dda93ad-22e1-4f1d-8954-f6e67ad035b8", "UserRole", "Editor", null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -501,6 +478,11 @@ namespace Pet.Entities.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_ImageId",
+                table: "AspNetUsers",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -551,10 +533,78 @@ namespace Pet.Entities.Migrations
                 name: "IX_Livings_UserId",
                 table: "Livings",
                 column: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Adverts_AspNetUsers_UserId",
+                table: "Adverts",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.NoAction);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.NoAction);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.NoAction);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                table: "AspNetUserRoles",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.NoAction);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_Images_ImageId",
+                table: "AspNetUsers",
+                column: "ImageId",
+                principalTable: "Images",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Addresses_Cities_CityId",
+                table: "Addresses");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Districts_Cities_CityId",
+                table: "Districts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Addresses_Districts_DistrictId",
+                table: "Addresses");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Adverts_Addresses_AddressId",
+                table: "Adverts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_Addresses_AddressId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Adverts_AspNetUsers_UserId",
+                table: "Adverts");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Livings_AspNetUsers_UserId",
+                table: "Livings");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -574,19 +624,31 @@ namespace Pet.Entities.Migrations
                 name: "FavoriteUser");
 
             migrationBuilder.DropTable(
-                name: "Images");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Favorites");
 
             migrationBuilder.DropTable(
-                name: "Livings");
+                name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Districts");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "Adverts");
+
+            migrationBuilder.DropTable(
+                name: "Livings");
 
             migrationBuilder.DropTable(
                 name: "Genus");
@@ -596,18 +658,6 @@ namespace Pet.Entities.Migrations
 
             migrationBuilder.DropTable(
                 name: "Racials");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
-
-            migrationBuilder.DropTable(
-                name: "Districts");
-
-            migrationBuilder.DropTable(
-                name: "Cities");
         }
     }
 }

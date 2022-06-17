@@ -524,6 +524,9 @@ namespace Pet.Entities.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("ImageId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -572,6 +575,8 @@ namespace Pet.Entities.Migrations
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("ImageId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -592,38 +597,38 @@ namespace Pet.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c2012b17-2936-4642-89db-080d959b8dcf",
-                            ConcurrencyStamp = "aba2f4cb-ed7b-4cd6-8b17-8163ca76fa85",
+                            Id = "4b4205fc-92b1-4c50-8ccf-3b7804d40ff3",
+                            ConcurrencyStamp = "261d3a1a-a39f-4988-bf0a-3f91b4b1c7a4",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = "8ad09be5-c448-4840-bc49-9b57d63671bd",
-                            ConcurrencyStamp = "86e859ae-9a74-4275-bae1-678db95346cf",
+                            Id = "e31cda44-d553-4556-bb29-ce5e58ff7d7b",
+                            ConcurrencyStamp = "43ee973f-9c63-42bc-a265-6fada2bc5cbe",
                             Name = "BasicUser"
                         },
                         new
                         {
-                            Id = "82e7ede2-53fd-43bd-b2b2-dc984ff2bc3a",
-                            ConcurrencyStamp = "3008cd8f-4ae7-402a-93d9-04440a242387",
+                            Id = "98b769b7-bba4-42a2-94f2-a1fe9d4ae5cf",
+                            ConcurrencyStamp = "c6ddeee2-5383-46d4-b195-f35eb320d6db",
                             Name = "MidUser"
                         },
                         new
                         {
-                            Id = "943a48f8-fc79-4cf4-b066-6eb41c7ca241",
-                            ConcurrencyStamp = "3cc29de4-330e-43f2-8493-936d8ea12f2f",
+                            Id = "145d083f-78f5-435e-8d27-637942164c3c",
+                            ConcurrencyStamp = "60d97cee-c27f-42d6-9430-f3edb871bb3f",
                             Name = "HighUser"
                         },
                         new
                         {
-                            Id = "da8c5292-d3c1-4136-95d6-dd19dfc8d162",
-                            ConcurrencyStamp = "cd0c377e-6698-4215-8645-a30f0d602f86",
+                            Id = "8d94a6a1-7908-4f6e-a1c3-b2fcc9981c34",
+                            ConcurrencyStamp = "b38638e6-09f7-4837-9cd0-cc4da396c8b9",
                             Name = "Creator"
                         },
                         new
                         {
-                            Id = "4f283820-ccad-4bee-b58a-ebe51d90dce9",
-                            ConcurrencyStamp = "a4945ac9-a2cf-442a-ba8c-1e279af8a11a",
+                            Id = "ef56f184-81e0-418d-a3b3-405ab859316c",
+                            ConcurrencyStamp = "1dda93ad-22e1-4f1d-8954-f6e67ad035b8",
                             Name = "Editor"
                         });
                 });
@@ -804,7 +809,15 @@ namespace Pet.Entities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Pet.Entities.Concrete.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Addresss");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("Pet.Entities.Concrete.Advert", b =>
