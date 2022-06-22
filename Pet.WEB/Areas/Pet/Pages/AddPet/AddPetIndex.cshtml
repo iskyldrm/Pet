@@ -1,6 +1,19 @@
 ﻿@page
 @model Pet.WEB.Areas.Pet.Pages.AddPet.AddPetIndexModel
-@{
-}
 
-<h1>pet ekle</h1>
+
+<div class="container m-3">
+    <div class="row">
+        <form id="addPetForm" method="post">
+            <div class="col-6">
+                <div class="form-outline w-50 mb-4">
+                <input asp-for="Input.LivingName" class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin adını giriniz" />
+                <span asp-validation-for="Input.LivingName" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="col-6">
+                <h3>col2</h3>
+            </div>
+        </form>
+    </div>
+</div>
