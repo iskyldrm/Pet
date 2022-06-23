@@ -63,9 +63,6 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             public string LivingName { get; set; }
             public bool LivingGender { get; set; }
             public byte LivingAge { get; set; }
-
-            [Required]
-            [Display(Name ="Tür seçiniz")]
             public int KindId { get; set; }
             public Kind Kind { get; set; }
             public int GenusId { get; set; }
@@ -77,7 +74,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id),"");
+            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
             Genuses = new SelectList(_genusManager.GetAll(),nameof(Genus.Id),nameof(Genus.GenusName));
 
         }

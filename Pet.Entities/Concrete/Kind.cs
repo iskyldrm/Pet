@@ -5,6 +5,7 @@ namespace Pet.Entities.Concrete
     public class Kind : IBaseEntity<int>, IEntity
     {
         public int Id { get; set; }
+        public string KindName { get; set; }    
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
         public virtual List<Living>? Livings { get; set; }

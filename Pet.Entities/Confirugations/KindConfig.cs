@@ -15,9 +15,9 @@ namespace Pet.Entities.Confirugations
         {
             builder.HasData
                 (
-                    new Kind { Id = 1, Familya = Families.Felines,Team = Orders.carnivorous, CreateTime = DateTime.Now,UpdateTime = DateTime.Now},
-                    new Kind { Id = 2, Familya = Families.canines, Team = Orders.Omnivor, CreateTime = DateTime.Now, UpdateTime = DateTime.Now },
-                    new Kind { Id = 3, Familya = Families.canines, Team = Orders.carnivorous, CreateTime = DateTime.Now, UpdateTime = DateTime.Now }
+                    new Kind { Id = 1, KindName = "Kedi", Familya = Families.Felines,Team = Orders.carnivorous, CreateTime = DateTime.Now,UpdateTime = DateTime.Now},
+                    new Kind { Id = 2, KindName = "Köpek", Familya = Families.canines, Team = Orders.Omnivor, CreateTime = DateTime.Now, UpdateTime = DateTime.Now }
+                    
                 );
         }
     }
