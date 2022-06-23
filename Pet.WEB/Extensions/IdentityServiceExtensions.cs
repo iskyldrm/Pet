@@ -28,6 +28,8 @@ namespace Pet.WEB.Extensions
             services.AddScoped<IdentityUser, User>();
             services.AddScoped<ICityManager, CityManager>();
             services.AddScoped<IDistrictManager, DistrictManager>();
+            services.AddScoped<IKindManager, KindManager>();
+            services.AddScoped<IGenusManager, GenusManager>();
 
 
             return services;

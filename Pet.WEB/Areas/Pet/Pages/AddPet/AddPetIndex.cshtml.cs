@@ -2,7 +2,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Pet.BL.Abstract;
 using Pet.Entities.Concrete;
+using System.ComponentModel.DataAnnotations;
 
 namespace Pet.WEB.Areas.Pet.Pages.AddPet
 {
@@ -10,11 +13,19 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AddPetIndexModel> _logger;
+        private readonly IKindManager _kindManager;
+        private readonly IGenusManager _genusManager;
 
-        public AddPetIndexModel(SignInManager<User> signInManager, ILogger<AddPetIndexModel> logger)
+        public AddPetIndexModel
+            (SignInManager<User> signInManager,
+            ILogger<AddPetIndexModel> logger,
+            IKindManager kindManager,
+            IGenusManager genusManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _kindManager = kindManager;
+            _genusManager = genusManager;
         }
 
         /// <summary>
@@ -50,10 +61,24 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
         public class InputModel
         {
             public string LivingName { get; set; }
+            public bool LivingGender { get; set; }
+            public byte LivingAge { get; set; }
+
+            [Required]
+            [Display(Name ="Tür seçiniz")]
+            public int KindId { get; set; }
+            public Kind Kind { get; set; }
+            public int GenusId { get; set; }
+            public Genus Genus { get; set; }
+            public List<Image> Images { get; set; }
         }
+        public SelectList Kinds { get; set; }
+        public SelectList Genuses { get; set; }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id),"");
+            Genuses = new SelectList(_genusManager.GetAll(),nameof(Genus.Id),nameof(Genus.GenusName));
 
         }
 
