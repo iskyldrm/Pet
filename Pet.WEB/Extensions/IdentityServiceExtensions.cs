@@ -30,6 +30,7 @@ namespace Pet.WEB.Extensions
             services.AddScoped<IDistrictManager, DistrictManager>();
             services.AddScoped<IKindManager, KindManager>();
             services.AddScoped<IGenusManager, GenusManager>();
+            services.AddScoped<ILivingManager, LivingManager>();
 
 
             return services;

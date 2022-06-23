@@ -17,6 +17,8 @@ namespace Pet.Entities.Concrete
         public Kind Kind { get; set; }
         public int GenusId { get; set; }
         public Genus Genus { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
         public List<Image> Images { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
