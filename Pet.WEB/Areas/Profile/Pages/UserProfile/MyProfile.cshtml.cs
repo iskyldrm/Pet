@@ -40,7 +40,17 @@ namespace Pet.WEB.Areas.Profile.Pages.UserProfile
             {
                 var user = userManager.Users.SingleOrDefault(p => p.UserName == userýnfo);
                 var ýmage = ýmageManager.GetAll(p => p.ImageUser == user);
-                ViewData["user"] = ýmage[0].Url;
+                var url = "";
+                if (ýmage.Count >0)
+                {
+                    url = ýmage[0].Url;
+                    ViewData["user"] = url;
+                }
+                else
+                {
+                    ViewData["user"] = "https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg";
+                }
+                
             }
             else
             {
