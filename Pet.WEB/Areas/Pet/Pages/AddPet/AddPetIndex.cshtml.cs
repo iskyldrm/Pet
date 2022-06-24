@@ -1,10 +1,14 @@
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Options;
 using Pet.BL.Abstract;
 using Pet.Entities.Concrete;
+using Pet.WEB.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Pet.WEB.Areas.Pet.Pages.AddPet
@@ -17,6 +21,9 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
         private readonly IKindManager _kindManager;
         private readonly IGenusManager _genusManager;
         private readonly ILivingManager livingManager;
+        private Cloudinary cloudinary;
+        private IOptions<CloudinarySettings> options;
+        
 
         public AddPetIndexModel
             (SignInManager<User> signInManager,
@@ -24,7 +31,8 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             ILogger<AddPetIndexModel> logger,
             IKindManager kindManager,
             IGenusManager genusManager,
-            ILivingManager livingManager)
+            ILivingManager livingManager,
+            IOptions<CloudinarySettings> options)
         {
             _signInManager = signInManager;
             this.userManager = userManager;
@@ -32,6 +40,9 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             _kindManager = kindManager;
             _genusManager = genusManager;
             this.livingManager = livingManager;
+            this.options = options;
+            Account account = new Account(options.Value.CloudName,options.Value.ApiKey,options.Value.ApiSecret);
+            cloudinary = new Cloudinary(account);
         }
 
         /// <summary>
@@ -71,6 +82,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             public byte LivingAge { get; set; }
             public int KindId { get; set; }
             public int GenusId { get; set; }
+            public IFormFile formFile { get; set; }
         }
         public SelectList Kinds { get; set; }
         public SelectList Genuses { get; set; }
@@ -83,19 +95,25 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var uploadresult = new ImageUploadResult();
+            using (var stream = Input.formFile.OpenReadStream())
+            {
+                var uploadparam = new ImageUploadParams { File = new FileDescription(Input.formFile.Name , stream) };
+                uploadresult = cloudinary.Upload(uploadparam);  
+            }
             
-
             var living = CreateLiving();
             var user = userManager.GetUserId(HttpContext.User);
             List<Image> images = new List<Image>();
+
             var ýmage = CreateImage();
 
             ýmage.Living = living;
-            ýmage.Url = "https://unsplash.com/photos/E18nZ_OHh04";
-            ýmage.ImagePath = "https://unsplash.com/photos/E18nZ_OHh04";
-            ýmage.ImageDescription = "Deneme";
+            ýmage.Url = uploadresult.Uri.ToString();
             ýmage.CreateTime = DateTime.Now;
             ýmage.UpdateTime = DateTime.Now;
+            ýmage.ImageDescription = "Deneme";
+            ýmage.ImagePath = uploadresult.Uri.ToString();
             images.Add(ýmage);
 
             living.LivingName = Input.LivingName;
@@ -143,6 +161,8 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
                     $"Ensure that '{nameof(Image.Living)}' is not an abstract class and has a parameterless constructor, or alternatively ");
             }
         }
+
+
     }
 
 }

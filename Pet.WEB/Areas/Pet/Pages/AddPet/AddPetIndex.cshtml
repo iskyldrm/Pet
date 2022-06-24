@@ -1,9 +1,18 @@
 ﻿@page
 @model Pet.WEB.Areas.Pet.Pages.AddPet.AddPetIndexModel
 
+<style>
+#display-image{
+  width: 350px;
+  height: 225px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+</style>
 
 <div class="container mt-2 mb-2 p-3">
-    <form id="addPetForm" method="post">
+    <form id="addPetForm" method="post" enctype="multipart/form-data">
         <div class="row ">
 
             <div class="col-5">
@@ -38,13 +47,14 @@
             </div>
             <div class="col-4">
                 <div class="form-label w-100 mb-2">
-                    @*<input type="file" accept="image/*" asp-for="Input.LivingAge" class="form-control form-control-lg " id="form3Example3" />*@
-                    @await Component.InvokeAsync("Image")
-
+                    <input asp-for="Input.formFile">
+                    <div id="display-image"></div>
+                    <span asp-validation-for="Input.formFile" class="text-light"></span>
+                    <label  class="text text-success">Resim eklemelisin</label>
                 </div>
             </div>
             <div class="col-3">
-                
+
                 <div class="col-md-4 px-6">
                     <input id="Submit" type="submit" class="w-100 btn btn-lg btn-success" value="Pet Ekle">
                 </div>
@@ -71,4 +81,17 @@
             });
         });
     </script>
+    @*<script>
+      const image_input = document.querySelector("#image-input");
+
+image_input.addEventListener("change", function() {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+
+  </script>*@
 }
