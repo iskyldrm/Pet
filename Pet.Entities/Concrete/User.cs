@@ -15,6 +15,7 @@ namespace Pet.Entities.Concrete
         public virtual List<Living>? Livings { get; set; }
         public virtual List<Advert>? Advert { get; set; }
         public virtual List<Favorite>? Favorites { get; set; }
+        public virtual List<Image>? Image { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
         

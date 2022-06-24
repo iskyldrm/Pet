@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -9,9 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using Pet.BL.Abstract;
 using Pet.DAL.Abstract;
 using Pet.Entities.Concrete;
+using Pet.WEB.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -28,6 +32,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly IDistrictManager _districtManager;
         private readonly ICityManager _cityManager;
+        private readonly IOptions<CloudinarySettings> options;
+        private Cloudinary cloudinary;
 
         public RegisterModel(
             UserManager<User> userManager,
@@ -36,7 +42,8 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             IDistrictManager districtManager,
-            ICityManager cityDAL)
+            ICityManager cityDAL,
+            IOptions<CloudinarySettings> options)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -46,6 +53,9 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _districtManager = districtManager;
             this._cityManager = cityDAL;
+            this.options = options;
+            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account(options.Value.CloudName, options.Value.ApiKey, options.Value.ApiSecret);
+            cloudinary = new Cloudinary(account);
         }
 
         /// <summary>
@@ -105,6 +115,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Bu kısım zorunludur")]
             public bool EmailConfirmed { get; set; } = false;
             public string FullAddress { get; set; }
+            public IFormFile formFile { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -145,7 +156,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
         {
             Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
             //Ilceler = new SelectList(_districtManager.GetAll(), nameof(District.Id), nameof(District.DistrictName));
-
+            
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -153,26 +164,46 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            var uploadresult = new ImageUploadResult();
+            using (var stream = Input.formFile.OpenReadStream())
+            {
+                var uploadparam = new ImageUploadParams { File = new FileDescription(Input.formFile.Name, stream) };
+                uploadresult = cloudinary.Upload(uploadparam);
+            }
+            var user = CreateUser();
+            var ımage = CreateImage();
+            ımage.Url = uploadresult.Uri.ToString();
+            ımage.ImageUser = user;
+            ımage.CreateTime = DateTime.Now;
+            ımage.UpdateTime = DateTime.Now;
+            ımage.ImageDescription = "Deneme";
+            ımage.ImagePath = uploadresult.Uri.ToString();
+
+            List<Image> images = new List<Image>();
+            images.Add(ımage);
+            
+            var address = new Address();
+            address.CityId = Input.CityId;
+            address.DistrictId = Input.DistrictId;
+            address.City = Input.CityName;
+            address.UpdateTime = DateTime.Now;
+            address.UpdateTime = DateTime.Now;
+            address.FullAdsress = Input.FullAddress;
+            user.Addresss = address;
+            user.LastName = Input.LastName;
+            user.Name = Input.Name;
+            user.UserName = Input.UserName;
+            user.EmailConfirmed = Input.EmailConfirmed;
+            //user.EmailConfirmed = false;
+            user.Age = DateTime.Now;
+            user.Gender = Input.Gender;
+            user.Image = images;
+
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-                var address = new Address();
-                address.CityId = Input.CityId;
-                address.DistrictId = Input.DistrictId;
-                address.City = Input.CityName;
-                address.UpdateTime = DateTime.Now;
-                address.UpdateTime = DateTime.Now;
-                address.FullAdsress = Input.FullAddress;
-                user.Addresss = address;
-                user.LastName = Input.LastName;
-                user.Name = Input.Name;
-                user.UserName = Input.UserName;
-                user.EmailConfirmed = Input.EmailConfirmed;
-                //user.EmailConfirmed = false;
-                user.Age = DateTime.Now;
-                user.Gender = Input.Gender;
+                
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -230,6 +261,18 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
                     $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+        private Image CreateImage()
+        {
+            try
+            {
+                return Activator.CreateInstance<Image>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Image.Id)}'. " +
+                    $"Ensure that '{nameof(Image.Living)}' is not an abstract class and has a parameterless constructor, or alternatively ");
             }
         }
 

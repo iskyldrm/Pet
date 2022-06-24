@@ -8,22 +8,31 @@
 
 @*BU SCRIPT DOSYASI İL SEÇİMİNE GÖRE İLÇELERİN SIRALMASINI SAĞLAMAKTADIR.*@
 <script>
-    $(function () {
-        $('#DrpSehir').change(function () {
+    $(function() {
+        $('#DrpSehir').change(function() {
             var id = $('#DrpSehir').val();
-            var url = 'https://localhost:7239/api/CityApi/GetDistrict?CityId='+id
-            
+            var url = 'https://localhost:7239/api/CityApi/GetDistrict?CityId=' + id
+
             console.log(url);
-             $.get(url, function(data, status){
-                 console.log(data);
-                     $('#Drpilce').empty();
-                    for (var i = 0; i < data.length; i++) {
-                        $('#Drpilce').append("<option value='" + data[i].id + "'>" + data[i].districtName + "</Option>");
-                    }
-                  });
+            $.get(url, function(data, status) {
+                console.log(data);
+                $('#Drpilce').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#Drpilce').append("<option value='" + data[i].id + "'>" + data[i].districtName + "</Option>");
+                }
+            });
         });
     });
 </script>
+<style>
+    #display-image {
+        width: 350px;
+        height: 225px;
+        border: 1px solid black;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 
 
 <div class="container">
@@ -32,92 +41,101 @@
             <div class="">
                 <img src="~/dist/img/CD.jpg" class="img-fluid" alt="cat&dog resmi">
             </div>
+
         </div>
         <div class="col-8">
             <div class="row">
                 <div class="col-md-12">
-                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
                         <h2>Yeni Hesap Oluştur</h2>
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="mx-lg-5">
-                        <table class="table">
-                            <tr>
-                                
-                                <td >
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.UserName" class="form-control mb-2" autocomplete="username" aria-required="true" />
-                                        <label asp-for="Input.UserName"  ></label>
-                                        <span  asp-validation-for="Input.UserName" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.Name" class="form-control mb-2" autocomplete="name" aria-required="true" />
-                                        <label asp-for="Input.Name"  ></label>
-                                        <span  asp-validation-for="Input.Name" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.LastName" class="form-control mb-2" autocomplete="LastName" aria-required="true" />
-                                        <label asp-for="Input.LastName"  ></label>
-                                        <span  asp-validation-for="Input.LastName" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <select asp-for="Input.Gender" class="form-control mb-2" autocomplete="new-password" aria-required="true">
-                                            <option value="" selected disabled hidden>Seçiniz</option>
-                                            <option value="true" >Kadın</option>
-                                            <option value="false">Erkek</option>
-                                        </select>
-                                        <label asp-for="Input.Gender"></label>
-                                        <span asp-validation-for="Input.Gender" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75  md-form md-outline mb-4 input-with-post-icon datepicker">
-                                        <input type="date" asp-for="Input.Age" class="form-control daterangepicker" autocomplete="new-password" aria-required="true" />
-                                        <label asp-for="Input.Age"></label>
-                                        <span asp-validation-for="Input.Age" class="text-danger"></span>
-                                    </div>
-                                </td>
-                                
+                            <table class="table">
+                                <tr>
 
-                                <td>
-                                    <div class="form-floating w-75">
-                                        @*<select name="authorId" asp-items="Model.Options"></select>*@
-                                        <select id="DrpSehir" asp-for="Input.CityId" class="form-control mb-2"  asp-items="Model.Sehirler">
-                                            <option value="" selected disabled hidden>Seçiniz</option>
-                                        </select>
-                                        <label asp-for="Input.CityName"></label>
-                                        <span asp-validation-for="Input.CityName" class="text-danger"></span>
-                                    </div>
+                                    <td>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.UserName" class="form-control mb-2" autocomplete="username" aria-required="true" />
+                                            <label asp-for="Input.UserName"></label>
+                                            <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.Name" class="form-control mb-2" autocomplete="name" aria-required="true" />
+                                            <label asp-for="Input.Name"></label>
+                                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.LastName" class="form-control mb-2" autocomplete="LastName" aria-required="true" />
+                                            <label asp-for="Input.LastName"></label>
+                                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <select asp-for="Input.Gender" class="form-control mb-2" autocomplete="new-password" aria-required="true">
+                                                <option value="" selected disabled hidden>Seçiniz</option>
+                                                <option value="true">Kadın</option>
+                                                <option value="false">Erkek</option>
+                                            </select>
+                                            <label asp-for="Input.Gender"></label>
+                                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75  md-form md-outline mb-4 input-with-post-icon datepicker">
+                                            <input type="date" asp-for="Input.Age" class="form-control daterangepicker" autocomplete="new-password" aria-required="true" />
+                                            <label asp-for="Input.Age"></label>
+                                            <span asp-validation-for="Input.Age" class="text-danger"></span>
+                                        </div>
+                                    </td>
 
-                                     <div class="form-floating w-75">
-                                        <select id="Drpilce" asp-for="Input.DistrictId" class="form-control mb-2"  asp-items="Model.Ilceler">
-                                            <option id="Drpilce" value="" selected disabled hidden>Seçiniz</option>
-                                        </select>
-                                        <label asp-for="Input.DistrictId"></label>
-                                        <span asp-validation-for="Input.DistrictId" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.Email" class="form-control mb-2" autocomplete="username" aria-required="true" />
-                                        <label asp-for="Input.Email"  ></label>
-                                        <span  asp-validation-for="Input.Email" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.Password" class="form-control mb-2" autocomplete="new-password" aria-required="true" />
-                                        <label asp-for="Input.Password"></label>
-                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.ConfirmPassword" class="form-control mb-2" autocomplete="new-password" aria-required="true" />
-                                        <label asp-for="Input.ConfirmPassword"></label>
-                                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-floating w-75">
-                                        <input asp-for="Input.FullAddress" class="form-control mb-2" />
-                                        <label asp-for="Input.FullAddress"></label>
-                                        <span asp-validation-for="Input.FullAddress" class="text-danger"></span>
-                                    </div>
-                                </td>
-                        
-                            </tr>
-                        </table>
+
+                                    <td>
+                                        <div class="form-floating w-75">
+                                            @*<select name="authorId" asp-items="Model.Options"></select>*@
+                                            <select id="DrpSehir" asp-for="Input.CityId" class="form-control mb-2" asp-items="Model.Sehirler">
+                                                <option value="" selected disabled hidden>Seçiniz</option>
+                                            </select>
+                                            <label asp-for="Input.CityName"></label>
+                                            <span asp-validation-for="Input.CityName" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-floating w-75">
+                                            <select id="Drpilce" asp-for="Input.DistrictId" class="form-control mb-2" asp-items="Model.Ilceler">
+                                                <option id="Drpilce" value="" selected disabled hidden>Seçiniz</option>
+                                            </select>
+                                            <label asp-for="Input.DistrictId"></label>
+                                            <span asp-validation-for="Input.DistrictId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.Email" class="form-control mb-2" autocomplete="username" aria-required="true" />
+                                            <label asp-for="Input.Email"></label>
+                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.Password" class="form-control mb-2" autocomplete="new-password" aria-required="true" />
+                                            <label asp-for="Input.Password"></label>
+                                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.ConfirmPassword" class="form-control mb-2" autocomplete="new-password" aria-required="true" />
+                                            <label asp-for="Input.ConfirmPassword"></label>
+                                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-floating w-75">
+                                            <input asp-for="Input.FullAddress" class="form-control mb-2" />
+                                            <label asp-for="Input.FullAddress"></label>
+                                            <span asp-validation-for="Input.FullAddress" class="text-danger"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-label w-100 mb-2">
+                                            <input asp-for="Input.formFile">
+                                            <div id="display-image"></div>
+                                            <span asp-validation-for="Input.formFile" class="text-light"></span>
+                                            <label class="text text-success">Resim eklemelisin</label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </table>
                         </div>
                         <div class="col-md-4 px-6">
                             <input id="registerSubmit" type="submit" class="w-50 btn btn-lg btn-success" value="Kayıt Ol">
@@ -127,9 +145,8 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-
                 </div>
-        
+
             </div>
         </div>
     </div>
@@ -137,5 +154,18 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        const image_input = document.querySelector("#Input_formFile");
+
+        image_input.addEventListener("change", function() {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                const uploaded_image = reader.result;
+                document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+            });
+            reader.readAsDataURL(this.files[0]);
+        });
+
+    </script>
 }
 

@@ -14,7 +14,8 @@ namespace Pet.Entities.Concrete
         public string Url { get; set; }
         public string? ImageDescription { get; set; }
         public virtual Living? Living { get; set; }
-        public Advert? Advert { get; set; }
+        public virtual User? ImageUser { get; set; }
+        public virtual Advert? Advert { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }
