@@ -2,22 +2,22 @@
 @model Pet.WEB.Areas.Pet.Pages.AddPet.AddPetIndexModel
 
 
-<div class="container m-3">
+<div class="container mt-2 mb-2 p-3">
     <form id="addPetForm" method="post">
-        <div class="row mx-5">
+        <div class="row ">
 
-            <div class="col-6">
-                <div class="form-outline w-50 mb-4">
+            <div class="col-5">
+                <div class="form-outline w-75 mb-2">
                     <input asp-for="Input.LivingName" class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin adını giriniz" />
                     <span asp-validation-for="Input.LivingName" class="text-danger"></span>
                 </div>
-                <div class="form-outline w-50 mb-4">
-                    <select asp-for="Input.Kind.KindName" class="form-control form-control-lg" asp-items="Model.Kinds">
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.KindId" class="form-control form-control-lg" asp-items="Model.Kinds">
                         <option value="" selected disabled hidden>Tür seçiniz</option>
                     </select>
-                    <span asp-validation-for="Input.Kind.KindName" class="text-light"></span>
+                    <span asp-validation-for="Input.KindId" class="text-light"></span>
                 </div>
-                <div class="form-outline w-50 mb-4">
+                <div class="form-outline w-75 mb-2">
                     <select asp-for="Input.LivingGender" class="form-control form-control-lg">
                         <option value="" selected disabled hidden>Cinsiyet Seçiniz</option>
                         <option value="true">Dişi</option>
@@ -25,24 +25,28 @@
                     </select>
                     <span asp-validation-for="Input.LivingGender" class="text-danger"></span>
                 </div>
-                <div class="form-outline w-50 mb-4">
-                    <select asp-for="Input.Genus.GenusName" class="form-control form-control-lg" asp-items="Model.Genuses">
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.GenusId" class="form-control form-control-lg" asp-items="Model.Genuses">
                         <option value="" selected disabled hidden>Cins seçiniz</option>
                     </select>
-                    <span asp-validation-for="Input.Genus.GenusName" class="text-light"></span>
+                    <span asp-validation-for="Input.GenusId" class="text-light"></span>
                 </div>
-                <div class="form-outline w-50 mb-4">
+                <div class="form-outline w-75 mb-2">
                     <input asp-for="Input.LivingAge" class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin yaşını giriniz" />
 
                 </div>
             </div>
-            <div class="col-6">
-                <div class="form-label w-75 mb-4">
-                    <input type="file" accept="image/*" asp-for="Input.LivingAge" class="form-control form-control-lg " id="form3Example3" />
+            <div class="col-4">
+                <div class="form-label w-100 mb-2">
+                    @*<input type="file" accept="image/*" asp-for="Input.LivingAge" class="form-control form-control-lg " id="form3Example3" />*@
+                    @await Component.InvokeAsync("Image")
 
                 </div>
+            </div>
+            <div class="col-3">
+                
                 <div class="col-md-4 px-6">
-                    <input id="Submit" type="submit" class="w-50 btn btn-lg btn-success" value="Pet Ekle">
+                    <input id="Submit" type="submit" class="w-100 btn btn-lg btn-success" value="Pet Ekle">
                 </div>
             </div>
         </div>
@@ -53,16 +57,16 @@
     {
 
     <script type="text/javascript">
-        $("#Input_Kind_KindName").change(function() {
-            var id = $("#Input_Kind_KindName option:selected").text();
+        $("#Input_KindId").change(function() {
+            var id = $("#Input_KindId option:selected").text();
             var url = 'https://localhost:7239/api/AddPetForKind/GetPetWithName?input=' + id
 
             console.log(url);
             $.get(url, function(data, status) {
                 console.log(data);
-                $('#Input_Genus_GenusName').empty();
+                $('#Input_GenusId').empty();
                 for (var i = 0; i < data.length; i++) {
-                    $('#Input_Genus_GenusName').append("<option value='" + data[i].id + "'>" + data[i].genusName + "</Option>");
+                    $('#Input_GenusId').append("<option value='" + data[i].id + "'>" + data[i].genusName + "</Option>");
                 }
             });
         });

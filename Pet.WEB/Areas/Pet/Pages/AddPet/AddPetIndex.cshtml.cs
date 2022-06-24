@@ -70,9 +70,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             public bool LivingGender { get; set; }
             public byte LivingAge { get; set; }
             public int KindId { get; set; }
-            public Kind Kind { get; set; }
             public int GenusId { get; set; }
-            public Genus Genus { get; set; }
         }
         public SelectList Kinds { get; set; }
         public SelectList Genuses { get; set; }
@@ -103,8 +101,8 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             living.LivingName = Input.LivingName;
             living.LivingGender = Input.LivingGender;
             living.LivingAge = Input.LivingAge;
-            living.KindId = 1;
-            living.GenusId = 1;
+            living.KindId = Input.KindId;
+            living.GenusId = Input.GenusId;
             living.CreateTime = DateTime.Now;
             living.UpdateTime = DateTime.Now;
             living.UserId = user;
