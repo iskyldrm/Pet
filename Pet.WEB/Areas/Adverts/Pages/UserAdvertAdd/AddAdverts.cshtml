@@ -14,7 +14,7 @@
 
                 <div class="form-outline w-75 mb-2">
                     <select asp-for="Input.PetState" required class="form-control form-control-lg">
-                        <option value="" selected disabled hidden>Çifletşme için durumu</option>
+                        <option value="" selected disabled hidden>Durumu</option>
                         <option value="Hazır">Hazır</option>
                         <option value="Zamanı var">Zamanı var</option>
                         <option value="Acil">Acil</option>
@@ -41,14 +41,14 @@
             <div class="col-4">
                 <div class="form-outline w-75 mb-2">
                     <select id="DrpSehir" asp-for="Input.CityId" class="form-control form-control-lg" asp-items="Model.Sehirler">
-                        <option value="" selected disabled hidden>İlan Şehri Seçiniz</option>
+                        <option value="" selected disabled hidden>İli seçiniz</option>
                     </select>
                     <span asp-validation-for="Input.CityId" class="text-danger"></span>
                 </div>
 
                 <div class="form-outline w-75 mb-2">
                     <select id="Drpilce" asp-for="Input.DistrictId" class="form-control form-control-lg" asp-items="Model.Ilceler">
-                        <option id="Drpilce" value="" selected disabled hidden>İlanın İlçesi</option>
+                        <option id="Drpilce" value="" selected disabled hidden>İlçe seçiniz</option>
                     </select>
                     <span asp-validation-for="Input.DistrictId" class="text-danger"></span>
                 </div>
