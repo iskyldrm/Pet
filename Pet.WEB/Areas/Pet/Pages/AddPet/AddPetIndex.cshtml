@@ -2,13 +2,13 @@
 @model Pet.WEB.Areas.Pet.Pages.AddPet.AddPetIndexModel
 
 <style>
-#display-image{
-  width: 300px;
-  height: 200px;
-  border: 1px solid black;
-  background-position: center;
-  background-size: cover;
-}
+    #display-image {
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+        background-position: center;
+        background-size: cover;
+    }
 </style>
 
 <div class="container mt-2 mb-2 p-3">
@@ -49,8 +49,8 @@
                 <div class="form-label w-100 mb-2">
                     <input asp-for="Input.formFile" required>
                     <div id="display-image"></div>
-                    <span asp-validation-for="Input.formFile" class="text-light" ></span>
-                    <label  class="text text-success">Resim eklemelisin</label>
+                    <span asp-validation-for="Input.formFile" class="text-light"></span>
+                    <label class="text text-success">Resim eklemelisin</label>
                 </div>
                 <div class="form-outline w-75 mb-2">
                     <input asp-for="Input.Description" required class="form-control form-control-lg" id="form3Example3" placeholder="Fotoğraf açıklaması" />
@@ -69,7 +69,12 @@
 </div>
 @section Scripts
     {
-
+    <script>
+        var PetEkleSubmit = document.getElementById("Submit");
+        PetEkleSubmit.onclick = function() {
+            window.alert("Pet Ekleme Başarılı");
+        }
+    </script>
     <script type="text/javascript">
         $("#Input_KindId").change(function() {
             var id = $("#Input_KindId option:selected").text();
@@ -85,17 +90,16 @@
             });
         });
     </script>
-  <script>
-      const image_input = document.querySelector("#Input_formFile");
+    <script>
+        const image_input = document.querySelector("#Input_formFile");
+        image_input.addEventListener("change", function() {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                const uploaded_image = reader.result;
+                document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+            });
+            reader.readAsDataURL(this.files[0]);
+        });
 
-image_input.addEventListener("change", function() {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    const uploaded_image = reader.result;
-    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
-  });
-  reader.readAsDataURL(this.files[0]);
-});
-
-  </script>
+    </script>
 }

@@ -184,6 +184,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             if (ModelState.IsValid)
             {
                     var result = livingManager.Add(living);
+                ViewData["result"] = result;
 
             }
             Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
