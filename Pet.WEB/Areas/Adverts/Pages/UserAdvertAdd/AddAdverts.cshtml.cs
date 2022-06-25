@@ -153,12 +153,12 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            //Input.UserId = _userManager.GetUserId(HttpContext.User).ToString();
             
             var advert = CreateAdvert();
             var living = _livingManager.GetAll(p=>p.Id.ToString() == Input.LivingId);
             
             var adress = CreateAddress();
+            
             
             adress.CityId = Input.CityId;
             adress.DistrictId = Input.DistrictId;
@@ -175,6 +175,8 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             advert.PetState = Input.PetState;
             advert.UserId = _userManager.GetUserId(HttpContext.User).ToString();
             advert.Address = adress;
+            advert.LivingId = living[0].Id;
+            
             
 
             if (ModelState.IsValid)

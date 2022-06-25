@@ -14,6 +14,7 @@ namespace Pet.Entities.Concrete
         public bool LivingGender { get; set; }
         public byte LivingAge { get; set; }
         public int KindId { get; set; }
+        public virtual List<Advert> Adverts { get; set; }
         public Kind Kind { get; set; }
         public int GenusId { get; set; }
         public Genus Genus { get; set; }
