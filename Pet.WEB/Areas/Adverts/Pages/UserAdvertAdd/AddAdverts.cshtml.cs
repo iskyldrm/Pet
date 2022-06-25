@@ -26,6 +26,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         private readonly ICityManager _cityManager;
         private readonly IImageManager _ýmageManager;
         private readonly ILivingManager _livingManager;
+        private readonly IAdvertManager _advertManager;
 
         public AddAdvertsModel(
             UserManager<User> userManager,
@@ -37,7 +38,8 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             IDistrictManager districtManager,
             ICityManager cityDAL,
             IImageManager ýmageManager,
-            ILivingManager livingManager)
+            ILivingManager livingManager,
+            IAdvertManager advertManager)
 
         {
             _userManager = userManager;
@@ -50,6 +52,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             _cityManager = cityDAL;
             _ýmageManager = ýmageManager;
             _livingManager = livingManager;
+            _advertManager = advertManager;
         }
 
         [BindProperty]
@@ -76,19 +79,12 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
 
         public class InputModel
         {
-            [Display(Name = "Ýlan no")]
-            public string? AdvertNo { get; set; }
+            
+            public string AdvertNo { get; set; }
             public AdvertType AdvertType { get; set; }
-            public string? PetState { get; set; }
-            [Required]
-            public string LivinId { get; set; }
-            public Living Living { get; set; }
-            public string ImageId { get; set; }
-            public virtual List<Image>? Image { get; set; }
-            public int? FavoriteId { get; set; }
-            public virtual List<Favorite>? Favorites { get; set; }
-            public string UserId { get; set; }
-            public virtual User? User { get; set; }
+            public string PetState { get; set; }
+            public string LivingId { get; set; }
+            //public Living? Living { get; set; }
             public int CityId { get; set; }
             public int DistrictId { get; set; }
             public City? CityName { get; set; }
@@ -97,7 +93,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         public SelectList Ilceler { get; set; }
         public SelectList Kinds { get; set; }
         public SelectList Livings { get; set; }
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync()
         {
             #region KullanýcýImagebilgisigetirme
             var userýnfo = HttpContext.User.Identity.Name;
@@ -153,19 +149,89 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             Livings = new SelectList(_livingManager.GetAll(p=>p.User.UserName== HttpContext.User.Identity.Name), nameof(Living.Id), nameof(Living.LivingName));
 
 
-            ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            //Input.UserId = _userManager.GetUserId(HttpContext.User).ToString();
+            
+            var advert = CreateAdvert();
+            var living = _livingManager.GetAll(p=>p.Id.ToString() == Input.LivingId);
+            
+            var adress = CreateAddress();
+            
+            adress.CityId = Input.CityId;
+            adress.DistrictId = Input.DistrictId;
+            adress.City = Input.CityName;
+            adress.UpdateTime = DateTime.Now;
+            adress.UpdateTime = DateTime.Now;
+            adress.FullAdsress = " ";
 
-            Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
-            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
-            Livings = new SelectList(_livingManager.GetAll(), nameof(Living.Id), nameof(Living.LivingName));
+
+            advert.AdvertNo = Input.AdvertNo;//Açýklma giriþidir
+            advert.AdvertType = Input.AdvertType;
+            advert.CreateTime = DateTime.Now;
+            advert.UpdateTime = DateTime.Now;
+            advert.PetState = Input.PetState;
+            advert.UserId = _userManager.GetUserId(HttpContext.User).ToString();
+            advert.Address = adress;
+            
+
+            if (ModelState.IsValid)
+            {
+                var result = _advertManager.Add(advert);
+            }
+
+
+
+
+
+
+            
             return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
 
         }
 
+        private Advert CreateAdvert()
+        {
+            try
+            {
+                return Activator.CreateInstance<Advert>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Advert.Id)}'. " +
+                    $"Ensure that '{nameof(Advert.Living.LivingName)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+
+        private Address CreateAddress()
+        {
+            try
+            {
+                return Activator.CreateInstance<Address>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Address.Id)}'. " +
+                    $"Ensure that '{nameof(Address.FullAdsress)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+        private Living CreateLiving()
+        {
+            try
+            {
+                return Activator.CreateInstance<Living>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Address.Id)}'. " +
+                    $"Ensure that '{nameof(Address.FullAdsress)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
 
 
     }

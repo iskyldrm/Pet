@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pet.Entities.Context;
 
@@ -11,9 +12,10 @@ using Pet.Entities.Context;
 namespace Pet.Entities.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220625193838_Livingaddpropaddedadvert")]
+    partial class Livingaddpropaddedadvert
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -363,538 +365,538 @@ namespace Pet.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(257),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1981),
                             GenusName = "Amerikan Shorthair",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(268)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1993)
                         },
                         new
                         {
                             Id = 2,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(269),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1995),
                             GenusName = "American Curl",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(270)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1995)
                         },
                         new
                         {
                             Id = 3,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(271),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1996),
                             GenusName = "Balinese",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(271)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1997)
                         },
                         new
                         {
                             Id = 4,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(272),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1998),
                             GenusName = "California Spangled",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(273)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1998)
                         },
                         new
                         {
                             Id = 5,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(274),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(1999),
                             GenusName = "Chartreux",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(274)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2000)
                         },
                         new
                         {
                             Id = 6,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(275),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2000),
                             GenusName = "Ragdoll Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(276)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2001)
                         },
                         new
                         {
                             Id = 7,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(276),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2002),
                             GenusName = "Mavi Rus kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(277)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2002)
                         },
                         new
                         {
                             Id = 8,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(277),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2003),
                             GenusName = "Maine Coon",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(278)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2004)
                         },
                         new
                         {
                             Id = 9,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(280),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2004),
                             GenusName = "İran kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(281)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2005)
                         },
                         new
                         {
                             Id = 10,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(282),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2006),
                             GenusName = "British Shorthair",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(282)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2006)
                         },
                         new
                         {
                             Id = 11,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(283),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2007),
                             GenusName = "California Spangled",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(283)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2007)
                         },
                         new
                         {
                             Id = 12,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(284),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2009),
                             GenusName = "Munchkin",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(284)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2009)
                         },
                         new
                         {
                             Id = 13,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(285),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2010),
                             GenusName = "Scottish Fold",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(286)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2010)
                         },
                         new
                         {
                             Id = 14,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(287),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2011),
                             GenusName = "Norveç Orman Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(287)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2012)
                         },
                         new
                         {
                             Id = 15,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(288),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2012),
                             GenusName = "Sibirya Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(289)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2013)
                         },
                         new
                         {
                             Id = 16,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(289),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2014),
                             GenusName = "Savannah",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(290)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2014)
                         },
                         new
                         {
                             Id = 17,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(291),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2015),
                             GenusName = "Amerikan Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(291)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2015)
                         },
                         new
                         {
                             Id = 18,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(292),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2016),
                             GenusName = "Exotic Shorthair",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(292)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2016)
                         },
                         new
                         {
                             Id = 19,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(293),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2017),
                             GenusName = "Ankara kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(294)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2018)
                         },
                         new
                         {
                             Id = 20,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(294),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2019),
                             GenusName = "Himalayan Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(295)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2020)
                         },
                         new
                         {
                             Id = 21,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(296),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2021),
                             GenusName = "Kısa Tüylü Kedi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(296)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2021)
                         },
                         new
                         {
                             Id = 22,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(297),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2022),
                             GenusName = "Birman Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(297)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2022)
                         },
                         new
                         {
                             Id = 23,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(298),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2023),
                             GenusName = "Habeş Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(298)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2023)
                         },
                         new
                         {
                             Id = 24,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(299),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2024),
                             GenusName = "Bombay Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(300)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2025)
                         },
                         new
                         {
                             Id = 25,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(300),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2025),
                             GenusName = "Kinkalow",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(301)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2026)
                         },
                         new
                         {
                             Id = 26,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(302),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2026),
                             GenusName = "Oriental Shorthair",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(302)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2027)
                         },
                         new
                         {
                             Id = 27,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(303),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2028),
                             GenusName = "Ragamuffin",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(303)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2029)
                         },
                         new
                         {
                             Id = 28,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(304),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2031),
                             GenusName = "Somali Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(305)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2031)
                         },
                         new
                         {
                             Id = 29,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(305),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2032),
                             GenusName = "Singapura",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(306)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2033)
                         },
                         new
                         {
                             Id = 30,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(310),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2033),
                             GenusName = "British Longhair",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(310)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2034)
                         },
                         new
                         {
                             Id = 31,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(311),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2035),
                             GenusName = "Toyger",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(312)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2035)
                         },
                         new
                         {
                             Id = 32,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(312),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2036),
                             GenusName = "Van Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(313)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2036)
                         },
                         new
                         {
                             Id = 33,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(320),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2037),
                             GenusName = "manks kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(320)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2037)
                         },
                         new
                         {
                             Id = 34,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(321),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2038),
                             GenusName = "Donskoy Kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(322)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2039)
                         },
                         new
                         {
                             Id = 35,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(322),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2039),
                             GenusName = "Havana kedisi",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(323)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2040)
                         },
                         new
                         {
                             Id = 36,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(324),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2041),
                             GenusName = "Ocicat",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(324)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2041)
                         },
                         new
                         {
                             Id = 37,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(325),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2042),
                             GenusName = "Balinese",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(325)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2042)
                         },
                         new
                         {
                             Id = 38,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(326),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2043),
                             GenusName = "Laperm",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(326)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2043)
                         },
                         new
                         {
                             Id = 39,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(327),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2044),
                             GenusName = "Selkirk Rex",
                             GenusType = true,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(328)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2045)
                         },
                         new
                         {
                             Id = 40,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(328),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2045),
                             GenusName = "Buldog",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(329)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2046)
                         },
                         new
                         {
                             Id = 41,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(330),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2047),
                             GenusName = "Labrador retriever",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(330)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2047)
                         },
                         new
                         {
                             Id = 42,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(331),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2048),
                             GenusName = "Alman çoban köpeği",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(331)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2048)
                         },
                         new
                         {
                             Id = 43,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(332),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2049),
                             GenusName = "Kaniş",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(333)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2049)
                         },
                         new
                         {
                             Id = 44,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(333),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2050),
                             GenusName = "Golden Retriever",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(334)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2051)
                         },
                         new
                         {
                             Id = 45,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(335),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2051),
                             GenusName = "Chihuahua",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(335)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2052)
                         },
                         new
                         {
                             Id = 46,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(336),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2052),
                             GenusName = "Fransız buldoğu",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(340)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2053)
                         },
                         new
                         {
                             Id = 47,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(341),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2087),
                             GenusName = "Bişon çuha köpeği",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(341)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2087)
                         },
                         new
                         {
                             Id = 48,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(342),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2088),
                             GenusName = "Boksör",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(343)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2089)
                         },
                         new
                         {
                             Id = 49,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(343),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2090),
                             GenusName = "Border collie",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(344)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2090)
                         },
                         new
                         {
                             Id = 50,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(344),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2091),
                             GenusName = "Sibirya kurdu",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(345)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2091)
                         },
                         new
                         {
                             Id = 51,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(346),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2092),
                             GenusName = "Pug",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(346)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2093)
                         },
                         new
                         {
                             Id = 52,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(347),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2093),
                             GenusName = "Amerikan Staffordshire teriyeri",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(347)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2094)
                         },
                         new
                         {
                             Id = 53,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(348),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2095),
                             GenusName = "Boston Terrier",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(349)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2095)
                         },
                         new
                         {
                             Id = 54,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(349),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2096),
                             GenusName = "Cavalier King Charles Spaniel",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(350)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2096)
                         },
                         new
                         {
                             Id = 55,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(452),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2097),
                             GenusName = "Pomeranian",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(453)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2097)
                         },
                         new
                         {
                             Id = 56,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(454),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2098),
                             GenusName = "Yorkshire teriyeri",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(454)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2099)
                         },
                         new
                         {
                             Id = 57,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(455),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2099),
                             GenusName = "Bull teriyer",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(456)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2100)
                         },
                         new
                         {
                             Id = 58,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(457),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2101),
                             GenusName = "İngiliz Cocker Spaniel",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(457)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2101)
                         },
                         new
                         {
                             Id = 59,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(458),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2102),
                             GenusName = "Amerikan Eskimo Köpeği",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(458)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2102)
                         },
                         new
                         {
                             Id = 60,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(459),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2103),
                             GenusName = "Danua",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(460)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2103)
                         },
                         new
                         {
                             Id = 61,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(460),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2104),
                             GenusName = "Malta köpeği",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(461)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2105)
                         },
                         new
                         {
                             Id = 62,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(461),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2105),
                             GenusName = "Çov-çov",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(462)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2106)
                         },
                         new
                         {
                             Id = 63,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(463),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2106),
                             GenusName = "Affenpinscher",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(463)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2107)
                         },
                         new
                         {
                             Id = 64,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(464),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2108),
                             GenusName = "Basenji",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(464)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2108)
                         },
                         new
                         {
                             Id = 65,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(465),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2109),
                             GenusName = "Dakhund",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(466)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2109)
                         },
                         new
                         {
                             Id = 66,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(466),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2110),
                             GenusName = "Bretonya epanyölü",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(467)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2111)
                         },
                         new
                         {
                             Id = 67,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(467),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2111),
                             GenusName = "Bulmastif",
                             GenusType = false,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(468)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2112)
                         });
                 });
 
@@ -972,20 +974,20 @@ namespace Pet.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(744),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2536),
                             Familya = 0,
                             KindName = "Kedi",
                             Team = 0,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(745)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2536)
                         },
                         new
                         {
                             Id = 2,
-                            CreateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(746),
+                            CreateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2538),
                             Familya = 1,
                             KindName = "Köpek",
                             Team = 2,
-                            UpdateTime = new DateTime(2022, 6, 25, 22, 58, 47, 743, DateTimeKind.Local).AddTicks(747)
+                            UpdateTime = new DateTime(2022, 6, 25, 22, 38, 38, 277, DateTimeKind.Local).AddTicks(2538)
                         });
                 });
 
@@ -1131,38 +1133,38 @@ namespace Pet.Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "61d97b38-2baa-4c27-9638-14fa9006022d",
-                            ConcurrencyStamp = "8873bcfa-170c-4897-8add-9c425ee21e32",
+                            Id = "d79ef067-01a6-475e-bf44-8549fd45b507",
+                            ConcurrencyStamp = "b5d0c7a2-928a-40ff-ae27-8e0bfaa96b12",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = "e7610f19-d477-433f-9d17-3f751130f3ee",
-                            ConcurrencyStamp = "5a29a9ab-373e-4e08-9f82-e18559428b2c",
+                            Id = "504900a4-ceeb-4ffc-85ad-248744ba87f4",
+                            ConcurrencyStamp = "202c5d67-82dc-4e2e-b832-0f06936f65a4",
                             Name = "BasicUser"
                         },
                         new
                         {
-                            Id = "4479cf9b-7a24-4400-84ab-150d6c3db8d9",
-                            ConcurrencyStamp = "1d25afec-3533-439d-9fc4-0f17e04df331",
+                            Id = "d5c7020c-e9e3-4dc5-8ecc-0630c4eb1531",
+                            ConcurrencyStamp = "b9a9fe3b-402d-49eb-9b8d-2d08a0860db5",
                             Name = "MidUser"
                         },
                         new
                         {
-                            Id = "1ba68496-b4a9-438f-839d-4bdeb3b82b2b",
-                            ConcurrencyStamp = "b6c7ae37-ec1a-4b45-b593-723a3bca0bbe",
+                            Id = "493c9b44-a9cc-49c4-8e22-dc7e25575bc4",
+                            ConcurrencyStamp = "fe544a13-930f-414c-8829-32c734cba419",
                             Name = "HighUser"
                         },
                         new
                         {
-                            Id = "c40318e9-a524-479d-b599-8d54aa0eace6",
-                            ConcurrencyStamp = "9f146792-be55-4ed1-8ad2-64bb6bea0818",
+                            Id = "75b65ff7-aea6-4119-9510-da76fad95587",
+                            ConcurrencyStamp = "b3499e4b-1315-4653-9d65-dab0f67cd41f",
                             Name = "Creator"
                         },
                         new
                         {
-                            Id = "2b9da517-5fd0-4428-9d16-f2b173ee932f",
-                            ConcurrencyStamp = "786e19f0-7fad-4d0e-b357-a37f4bc34fbd",
+                            Id = "4db7c735-8208-4a4e-8df0-c234f6667c5b",
+                            ConcurrencyStamp = "fb38f5f1-88b8-479b-8207-7353d318bd78",
                             Name = "Editor"
                         });
                 });
@@ -1261,7 +1263,7 @@ namespace Pet.Entities.Migrations
                         .IsRequired();
 
                     b.HasOne("Pet.Entities.Concrete.Living", "Living")
-                        .WithMany()
+                        .WithMany("Advert")
                         .HasForeignKey("LivingId");
 
                     b.HasOne("Pet.Entities.Concrete.User", "User")
@@ -1375,6 +1377,8 @@ namespace Pet.Entities.Migrations
 
             modelBuilder.Entity("Pet.Entities.Concrete.Living", b =>
                 {
+                    b.Navigation("Advert");
+
                     b.Navigation("Images");
                 });
 

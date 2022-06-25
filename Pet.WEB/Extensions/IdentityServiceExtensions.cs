@@ -32,6 +32,7 @@ namespace Pet.WEB.Extensions
             services.AddScoped<IGenusManager, GenusManager>();
             services.AddScoped<ILivingManager, LivingManager>();
             services.AddScoped<IImageManager, ImageManager>();
+            services.AddScoped<IAdvertManager, AdvertManager>();
 
 
             return services;

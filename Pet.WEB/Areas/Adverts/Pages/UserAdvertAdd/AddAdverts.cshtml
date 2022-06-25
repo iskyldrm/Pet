@@ -23,11 +23,20 @@
                     <span asp-validation-for="Input.PetState" class="text-light"></span>
                 </div>
                 <div class="form-outline w-75 mb-2">
-                    <select asp-for="Input.LivinId" required class="form-control form-control-lg" asp-items="Model.Livings">
+                    <select asp-for="Input.LivingId" required class="form-control form-control-lg" asp-items="Model.Livings">
                         <option value="" selected disabled hidden>PET seçiniz</option>
                     </select>
-                    <span asp-validation-for="Input.LivinId" class="text-light"></span>
+                    <span asp-validation-for="Input.LivingId" class="text-light"></span>
                 </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.AdvertType" required class="form-control form-control-lg">
+                        <option value="" selected disabled hidden>İlan tipi seçiniz</option>
+                        <option value="1">Kedi Eş İlanı</option>
+                        <option value="0">Köpek Eş İlanı</option>
+                    </select>
+                    <span asp-validation-for="Input.AdvertType" class="text-light"></span>
+                </div>
+                
             </div>
             <div class="col-4">
                 <div class="form-outline w-75 mb-2">

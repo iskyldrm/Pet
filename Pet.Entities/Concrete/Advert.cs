@@ -10,7 +10,7 @@ namespace Pet.Entities.Concrete
         public string PetState { get; set; }
         public virtual List<Image>? Image { get; set; }
         public virtual List<Favorite> Favorites { get; set; }
-        public Living? Living { get; set; }
+        public virtual Living? Living { get; set; }
         public string UserId { get; set; }
         public virtual User? User { get; set; }
         public int AddressId { get; set; }
