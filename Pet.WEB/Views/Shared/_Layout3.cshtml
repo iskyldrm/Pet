@@ -849,13 +849,13 @@
                                       <div class="profile-header-content">
                                          <!-- BEGIN profile-header-img -->
                                          <div class="profile-header-img">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                            <img src="@ViewData["User"]" alt="">
                                          </div>
                                          <!-- END profile-header-img -->
                                          <!-- BEGIN profile-header-info -->
                                          <div class="profile-header-info">
                                             <h4 class="m-t-10 m-b-5">@User.Identity.Name</h4>
-                                            <p class="m-b-10">Kedi ismi gelecek</p>
+                                            <p class="m-b-10">@ViewData["userLivingName"]</p>
                                             <a asp-area="Adverts" asp-controller="UserAdvertAdd" asp-action="AddAdverts" class="btn btn-sm btn-info mb-2">İlan Ekle</a>
                                             <a asp-area="Pet" asp-controller="AddPet" asp-action="AddPetIndex" class="btn btn-sm btn-info mb-2">Pet Ekle</a>
                                          </div>

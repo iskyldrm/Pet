@@ -10,6 +10,7 @@ using Pet.BL.Abstract;
 using Pet.Entities.Concrete;
 using Pet.WEB.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Pet.WEB.Areas.Pet.Pages.AddPet
 {
@@ -23,7 +24,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
         private readonly ILivingManager livingManager;
         private Cloudinary cloudinary;
         private IOptions<CloudinarySettings> options;
-        
+        private readonly IImageManager ýmageManager;
 
         public AddPetIndexModel
             (SignInManager<User> signInManager,
@@ -32,7 +33,8 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             IKindManager kindManager,
             IGenusManager genusManager,
             ILivingManager livingManager,
-            IOptions<CloudinarySettings> options)
+            IOptions<CloudinarySettings> options, 
+            IImageManager ýmageManager)
         {
             _signInManager = signInManager;
             this.userManager = userManager;
@@ -41,6 +43,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             _genusManager = genusManager;
             this.livingManager = livingManager;
             this.options = options;
+            this.ýmageManager = ýmageManager;
             Account account = new Account(options.Value.CloudName,options.Value.ApiKey,options.Value.ApiSecret);
             cloudinary = new Cloudinary(account);
         }
@@ -82,15 +85,67 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             public byte LivingAge { get; set; }
             public int KindId { get; set; }
             public int GenusId { get; set; }
+            [Required(ErrorMessage ="Resim eklemeden olmaz")]
             public IFormFile formFile { get; set; }
+            public string Description { get; set; }
         }
         public SelectList Kinds { get; set; }
         public SelectList Genuses { get; set; }
 
         public async Task OnGetAsync()
         {
+            #region Kulanýcý ýmage bilgisi
+            var userýnfo = HttpContext.User.Identity.Name;
+            if (userýnfo != null)
+            {
+                var user = userManager.Users.SingleOrDefault(p => p.UserName == userýnfo);
+                var ýmage = ýmageManager.GetAll(p => p.ImageUser == user);
+                var url = "";
+                if (ýmage.Count > 0)
+                {
+                    url = ýmage[0].Url;
+                    ViewData["user"] = url;
+                }
+                else
+                {
+                    ViewData["user"] = "https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg";
+                }
+
+            }
+            else
+            {
+                ViewData["User"] = "https://bootdey.com/img/Content/avatar/avatar3.png";
+            }
+            #endregion //Kullanýcnýn isminden image bilgisi geitirliyor
+
+            #region Canlýisimlerinigetirme
+            var livingýnfo = livingManager.GetAll(p => p.User.UserName == userýnfo);
+
+            StringBuilder names = new StringBuilder();
+            for (int i = 0; i < livingýnfo.Count; i++)
+            {
+                names.Append(livingýnfo[i].LivingName.ToString());
+                if (i > 9)
+                    break;
+                if (i < livingýnfo.Count - 1)
+                    names.Append(", ");
+            }
+            if (livingýnfo.Count > 0)
+            {
+
+
+                ViewData["userLivingName"] = names.ToString();
+
+
+            }
+            else
+            {
+                ViewData["userLivingName"] = "Petiniz yok";
+            }
+            #endregion
+
             Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
-            Genuses = new SelectList(_genusManager.GetAll(),nameof(Genus.Id),nameof(Genus.GenusName));
+            //Genuses = new SelectList(_genusManager.GetAll(),nameof(Genus.Id),nameof(Genus.GenusName));
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -112,7 +167,7 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
             ýmage.Url = uploadresult.Uri.ToString();
             ýmage.CreateTime = DateTime.Now;
             ýmage.UpdateTime = DateTime.Now;
-            ýmage.ImageDescription = "Deneme";
+            ýmage.ImageDescription = Input.Description;
             ýmage.ImagePath = uploadresult.Uri.ToString();
             images.Add(ýmage);
 
@@ -132,9 +187,9 @@ namespace Pet.WEB.Areas.Pet.Pages.AddPet
 
             }
             Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
-            Genuses = new SelectList(_genusManager.GetAll(), nameof(Genus.Id), nameof(Genus.GenusName));
+            //Genuses = new SelectList(_genusManager.GetAll(), nameof(Genus.Id), nameof(Genus.GenusName));
 
-            return Page();
+            return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
         }
         private Living CreateLiving()
         {

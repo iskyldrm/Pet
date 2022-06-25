@@ -9,6 +9,7 @@ using Pet.BL.Abstract;
 using Pet.Entities.Concrete;
 using Pet.WEB.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
 {
@@ -23,6 +24,8 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         private readonly IDistrictManager _districtManager;
         private readonly ICityManager _cityManager;
         private readonly IOptions<CloudinarySettings> options;
+        private readonly IImageManager ýmageManager;
+        private readonly ILivingManager livingManager;
         private Cloudinary cloudinary;
 
         public AddAdvertsModel(
@@ -33,7 +36,9 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             IEmailSender emailSender,
             IDistrictManager districtManager,
             ICityManager cityDAL,
-            IOptions<CloudinarySettings> options)
+            IOptions<CloudinarySettings> options,
+            IImageManager ýmageManager,
+            ILivingManager livingManager)
 
         {
             _userManager = userManager;
@@ -45,6 +50,8 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             _districtManager = districtManager;
             this._cityManager = cityDAL;
             this.options = options;
+            this.ýmageManager = ýmageManager;
+            this.livingManager = livingManager;
             cloudinary = new Cloudinary(new Account() { ApiKey = options.Value.ApiKey,ApiSecret = options.Value.ApiSecret,Cloud = options.Value.CloudName });
         }
 
@@ -100,6 +107,55 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            #region KullanýcýImagebilgisigetirme
+            var userýnfo = HttpContext.User.Identity.Name;
+            if (userýnfo != null)
+            {
+                var user = _userManager.Users.SingleOrDefault(p => p.UserName == userýnfo);
+                var ýmage = ýmageManager.GetAll(p => p.ImageUser == user);
+                var url = "";
+                if (ýmage.Count > 0)
+                {
+                    url = ýmage[0].Url;
+                    ViewData["user"] = url;
+                }
+                else
+                {
+                    ViewData["user"] = "https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg";
+                }
+
+            }
+            else
+            {
+                ViewData["User"] = "https://bootdey.com/img/Content/avatar/avatar3.png";
+            } 
+            #endregion
+
+            #region Canlýisimlerinigetirme
+            var livingýnfo = livingManager.GetAll(p => p.User.UserName == userýnfo);
+
+            StringBuilder names = new StringBuilder();
+            for (int i = 0; i < livingýnfo.Count; i++)
+            {
+                names.Append(livingýnfo[i].LivingName.ToString());
+                if (i > 9)
+                    break;
+                if (i < livingýnfo.Count - 1)
+                    names.Append(", ");
+            }
+            if (livingýnfo.Count > 0)
+            {
+
+
+                ViewData["userLivingName"] = names.ToString();
+
+
+            }
+            else
+            {
+                ViewData["userLivingName"] = "Petiniz yok";
+            }
+            #endregion
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

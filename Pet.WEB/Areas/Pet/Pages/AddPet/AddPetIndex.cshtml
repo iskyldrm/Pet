@@ -3,8 +3,8 @@
 
 <style>
 #display-image{
-  width: 350px;
-  height: 225px;
+  width: 300px;
+  height: 200px;
   border: 1px solid black;
   background-position: center;
   background-size: cover;
@@ -17,17 +17,17 @@
 
             <div class="col-5">
                 <div class="form-outline w-75 mb-2">
-                    <input asp-for="Input.LivingName" class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin adını giriniz" />
+                    <input asp-for="Input.LivingName" required class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin adını giriniz" />
                     <span asp-validation-for="Input.LivingName" class="text-danger"></span>
                 </div>
                 <div class="form-outline w-75 mb-2">
-                    <select asp-for="Input.KindId" class="form-control form-control-lg" asp-items="Model.Kinds">
+                    <select asp-for="Input.KindId" required class="form-control form-control-lg" asp-items="Model.Kinds">
                         <option value="" selected disabled hidden>Tür seçiniz</option>
                     </select>
                     <span asp-validation-for="Input.KindId" class="text-light"></span>
                 </div>
                 <div class="form-outline w-75 mb-2">
-                    <select asp-for="Input.LivingGender" class="form-control form-control-lg">
+                    <select asp-for="Input.LivingGender" required class="form-control form-control-lg">
                         <option value="" selected disabled hidden>Cinsiyet Seçiniz</option>
                         <option value="true">Dişi</option>
                         <option value="false">Erkek</option>
@@ -35,22 +35,26 @@
                     <span asp-validation-for="Input.LivingGender" class="text-danger"></span>
                 </div>
                 <div class="form-outline w-75 mb-2">
-                    <select asp-for="Input.GenusId" class="form-control form-control-lg" asp-items="Model.Genuses">
+                    <select asp-for="Input.GenusId" required class="form-control form-control-lg" asp-items="Model.Genuses">
                         <option value="" selected disabled hidden>Cins seçiniz</option>
                     </select>
                     <span asp-validation-for="Input.GenusId" class="text-light"></span>
                 </div>
                 <div class="form-outline w-75 mb-2">
-                    <input asp-for="Input.LivingAge" class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin yaşını giriniz" />
+                    <input asp-for="Input.LivingAge" required class="form-control form-control-lg" id="form3Example3" placeholder="Petinizin yaşını giriniz" />
 
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-label w-100 mb-2">
-                    <input asp-for="Input.formFile">
+                    <input asp-for="Input.formFile" required>
                     <div id="display-image"></div>
-                    <span asp-validation-for="Input.formFile" class="text-light"></span>
+                    <span asp-validation-for="Input.formFile" class="text-light" ></span>
                     <label  class="text text-success">Resim eklemelisin</label>
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.Description" required class="form-control form-control-lg" id="form3Example3" placeholder="Fotoğraf açıklaması" />
+                    <span asp-validation-for="Input.Description" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-3">
