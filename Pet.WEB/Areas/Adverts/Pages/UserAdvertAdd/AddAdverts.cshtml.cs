@@ -150,7 +150,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             #endregion
             Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
             Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
-            Livings = new SelectList(_livingManager.GetAll(), nameof(Living.Id), nameof(Living.LivingName));
+            Livings = new SelectList(_livingManager.GetAll(p=>p.User.UserName== HttpContext.User.Identity.Name), nameof(Living.Id), nameof(Living.LivingName));
 
 
             ReturnUrl = returnUrl;
