@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
 using Pet.BL.Abstract;
 using Pet.Entities.Concrete;
@@ -18,41 +19,37 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IUserStore<User> _userStore;
-        private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<AddAdvertsModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IGenusManager _menuManager;
+        private readonly IKindManager _kindManager;
         private readonly IDistrictManager _districtManager;
         private readonly ICityManager _cityManager;
-        private readonly IOptions<CloudinarySettings> options;
-        private readonly IImageManager ýmageManager;
-        private readonly ILivingManager livingManager;
-        private Cloudinary cloudinary;
+        private readonly IImageManager _ýmageManager;
+        private readonly ILivingManager _livingManager;
 
         public AddAdvertsModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<AddAdvertsModel> logger,
-            IEmailSender emailSender,
+            IGenusManager menuManager,
+            IKindManager kindManager,
             IDistrictManager districtManager,
             ICityManager cityDAL,
-            IOptions<CloudinarySettings> options,
             IImageManager ýmageManager,
             ILivingManager livingManager)
 
         {
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _menuManager = menuManager;
+            _kindManager = kindManager;
             _districtManager = districtManager;
-            this._cityManager = cityDAL;
-            this.options = options;
-            this.ýmageManager = ýmageManager;
-            this.livingManager = livingManager;
-            cloudinary = new Cloudinary(new Account() { ApiKey = options.Value.ApiKey,ApiSecret = options.Value.ApiSecret,Cloud = options.Value.CloudName });
+            _cityManager = cityDAL;
+            _ýmageManager = ýmageManager;
+            _livingManager = livingManager;
         }
 
         [BindProperty]
@@ -76,17 +73,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
         /// </summary>
         [TempData]
         public string ErrorMessage { get; set; }
-        //public string AdvertNo { get; set; } // ilan no
-        //public AdvertType AdvertType { get; set; }
-        //public string PetState { get; set; }
-        //public virtual List<Image>? Image { get; set; }
-        //public virtual List<Favorite> Favorites { get; set; }
-        //public string UserId { get; set; }
-        //public virtual User? User { get; set; }
-        //public int AddressId { get; set; }
-        //public virtual Address? Address { get; set; }
-        //public DateTime CreateTime { get; set; }
-        //public DateTime UpdateTime { get; set; }
+
         public class InputModel
         {
             [Display(Name = "Ýlan no")]
@@ -94,17 +81,22 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             public AdvertType AdvertType { get; set; }
             public string? PetState { get; set; }
             [Required]
+            public string LivinId { get; set; }
             public Living Living { get; set; }
+            public string ImageId { get; set; }
             public virtual List<Image>? Image { get; set; }
+            public int? FavoriteId { get; set; }
             public virtual List<Favorite>? Favorites { get; set; }
             public string UserId { get; set; }
             public virtual User? User { get; set; }
             public int CityId { get; set; }
-
             public int DistrictId { get; set; }
             public City? CityName { get; set; }
         }
-
+        public SelectList Sehirler { get; set; }
+        public SelectList Ilceler { get; set; }
+        public SelectList Kinds { get; set; }
+        public SelectList Livings { get; set; }
         public async Task OnGetAsync(string returnUrl = null)
         {
             #region KullanýcýImagebilgisigetirme
@@ -112,7 +104,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             if (userýnfo != null)
             {
                 var user = _userManager.Users.SingleOrDefault(p => p.UserName == userýnfo);
-                var ýmage = ýmageManager.GetAll(p => p.ImageUser == user);
+                var ýmage = _ýmageManager.GetAll(p => p.ImageUser == user);
                 var url = "";
                 if (ýmage.Count > 0)
                 {
@@ -132,7 +124,7 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             #endregion
 
             #region Canlýisimlerinigetirme
-            var livingýnfo = livingManager.GetAll(p => p.User.UserName == userýnfo);
+            var livingýnfo = _livingManager.GetAll(p => p.User.UserName == userýnfo);
 
             StringBuilder names = new StringBuilder();
             for (int i = 0; i < livingýnfo.Count; i++)
@@ -156,19 +148,25 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
                 ViewData["userLivingName"] = "Petiniz yok";
             }
             #endregion
+            Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
+            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
+            Livings = new SelectList(_livingManager.GetAll(), nameof(Living.Id), nameof(Living.LivingName));
+
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
-
-
-        private IUserEmailStore<User> GetEmailStore()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<User>)_userStore;
+
+            Sehirler = new SelectList(_cityManager.GetAll(), nameof(City.Id), nameof(City.CityName));
+            Kinds = new SelectList(_kindManager.GetAll(), nameof(Kind.Id), nameof(Kind.KindName));
+            Livings = new SelectList(_livingManager.GetAll(), nameof(Living.Id), nameof(Living.LivingName));
+            return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
+
         }
+
+
+
     }
 }

@@ -3,25 +3,86 @@
 @{
 }
 
+<style>
+</style>
 
-<div class="container mt-5">
-    <h1>Yeni İlan Ekle</h1>
-    <div class="row">
-        <form id="addadvertForm" method="post">
-            <div class="col-6">
-                @*<div class="form-floating w-75">
-                    <select asp-for="Input.Gender" class="form-control mb-2" >
-                        <option value="" selected disabled hidden>Seçiniz</option>
-                        <option value="true">Kadın</option>
-                        <option value="false">Erkek</option>
+<div class="container mt-2 mb-2 p-3">
+    <form id="addAdvertForm" method="post">
+        <div class="row ">
+
+            <div class="col-5">
+
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.PetState" required class="form-control form-control-lg">
+                        <option value="" selected disabled hidden>Çifletşme için durumu</option>
+                        <option value="Hazır">Hazır</option>
+                        <option value="Zamanı var">Zamanı var</option>
+                        <option value="Acil">Acil</option>
+                        <option value="İlerisi için">İlerisi için</option>
                     </select>
-                    <label asp-for="Input.Gender"></label>
-                    <span asp-validation-for="Input.Gender" class="text-danger"></span>
-                </div>*@
+                    <span asp-validation-for="Input.PetState" class="text-light"></span>
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.LivinId" required class="form-control form-control-lg" asp-items="Model.Livings">
+                        <option value="" selected disabled hidden>PET seçiniz</option>
+                    </select>
+                    <span asp-validation-for="Input.LivinId" class="text-light"></span>
+                </div>
             </div>
-            <div class="col-6">
-                <h3>col2</h3>
+            <div class="col-4">
+                <div class="form-outline w-75 mb-2">
+                    <select id="DrpSehir" asp-for="Input.CityId" class="form-control form-control-lg" asp-items="Model.Sehirler">
+                        <option value="" selected disabled hidden>İlan Şehri Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="Input.CityId" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline w-75 mb-2">
+                    <select id="Drpilce" asp-for="Input.DistrictId" class="form-control form-control-lg" asp-items="Model.Ilceler">
+                        <option id="Drpilce" value="" selected disabled hidden>İlanın İlçesi</option>
+                    </select>
+                    <span asp-validation-for="Input.DistrictId" class="text-danger"></span>
+                </div>
+                @*Advert no gereksiz olduğu için açıklama yerine kullanıldı*@
+                <div class="form-outline w-75 md-form mb-4 pink-textarea active-pink-textarea">
+                        <textarea asp-for="Input.AdvertNo" required id="form21"
+                        class="md-textarea form-control" rows="5" placeholder="Açıklama yaz"></textarea>
+                </div>
             </div>
-        </form>
-    </div>
+            <div class="col-3">
+
+                <div class="col-md-4 px-6">
+                    <input id="Submit" type="submit" class="w-100 btn btn-outline-success" value="İlan Ekle">
+                </div>
+            </div>
+        </div>
+    </form>
+
 </div>
+@section Scripts
+    {
+    <script>
+        var PetEkleSubmit = document.getElementById("Submit");
+        PetEkleSubmit.onclick = function() {
+            window.alert("ilan Ekleme Başarılı");
+        }
+    </script>
+    @*BU SCRIPT DOSYASI İL SEÇİMİNE GÖRE İLÇELERİN SIRALMASINI SAĞLAMAKTADIR.*@
+    <script>
+        $(function() {
+            $('#DrpSehir').change(function() {
+                var id = $('#DrpSehir').val();
+                var url = 'https://localhost:7239/api/CityApi/GetDistrict?CityId=' + id
+
+                console.log(url);
+                $.get(url, function(data, status) {
+                    console.log(data);
+                    $('#Drpilce').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#Drpilce').append("<option value='" + data[i].id + "'>" + data[i].districtName + "</Option>");
+                    }
+                });
+            });
+        });
+    </script>
+}
