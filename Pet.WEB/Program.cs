@@ -62,6 +62,11 @@ app.MapAreaControllerRoute(
             areaName: "Profile",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                         );
+app.MapAreaControllerRoute(
+            name: "areas",
+            areaName: "ShowAdvert",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                        );
 
 app.MapControllerRoute(
             name: "default",

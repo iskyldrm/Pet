@@ -116,7 +116,7 @@ namespace Pet.WEB.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return RedirectToPage("/ShowAdverts/AdvertsShowed", new { area = "ShowAdvert" });
                 }
                 if (result.RequiresTwoFactor)
                 {

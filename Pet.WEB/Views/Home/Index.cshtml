@@ -70,7 +70,7 @@
       
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-white" style="width: 250px;">
            
-                      <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
+                      <a asp-area="ShowAdvert" asp-controller="ShowAdverts" asp-action="AdvertsShowed" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
                                 <svg class="me-2" width="5" height="32"></svg>
                                 <span class="fs-4 text-black-50">
                                     <img src="/dist/img/cat.png" />
@@ -81,7 +81,7 @@
                       <br>
                       <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item li lim">
-                          <a  asp-area="" asp-controller="Home" asp-action="Index" class="nav-link text-dark" aria-current="page">
+                          <a  asp-area="ShowAdvert" asp-controller="ShowAdverts" asp-action="AdvertsShowed" class="nav-link text-dark" aria-current="page">
                             <svg class="pe-none me-2 " width="16" height="16"></svg>
                             Ana sayfam
                           </a>
@@ -128,7 +128,7 @@
       
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-white " style="width: 250px;">
            
-                      <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
+                      <a asp-area="ShowAdvert" asp-controller="ShowAdverts" asp-action="AdvertsShowed" class="d-flex align-items-center mb-3 mb-md-0 me-md-autotext-white text-decoration-none">
                                 <svg class="me-2" width="5" height="32"></svg>
                                 <span class="fs-4 text-black-50">
                                     <img src="/dist/img/cat.png" />
@@ -147,51 +147,21 @@
             </div>
             <div class="col-8 mt-4 bg-light" >
                 <div class="row mt-5">
-                    <div class="col-3">
+                    @*<div class="col-3">
                         @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
+                    </div>*@
+                    
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
+                    
                 </div>
                 
                  <div class="row">
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
-                    <div class="col-3">
-                        @await Component.InvokeAsync("Adverts")
-                    </div>
+                    
                 </div>
                 
             </div>
-            <div class="col-2 mt-5 ">
+            <div class="col-2 mt-4">
                 <div class="row">
                     <h5>İlginizi çekebilir</h5>
                 </div>

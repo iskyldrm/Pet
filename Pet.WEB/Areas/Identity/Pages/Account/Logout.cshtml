@@ -10,7 +10,7 @@
             @{
                 if (User.Identity.IsAuthenticated)
                 {
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/ShowAdverts/AdvertsShowed", new { area = "ShowAdvert" })" method="post">
                     <h1>Çıkış yapmak istediğine emin misin?</h1>  
                     <strong><button type="submit" class="nav-link btn btn-link text-dark"><h5>Çıkış yapamak için bu <span style="color:red">yazıya</span> tıkla</h5> </button></strong> 
                     
