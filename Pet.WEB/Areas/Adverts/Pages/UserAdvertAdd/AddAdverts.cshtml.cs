@@ -181,16 +181,16 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
 
             if (ModelState.IsValid)
             {
-                var result = _advertManager.Add(advert);
+                var advertResult = _advertManager.GetAll(p => p.LivingId.ToString() == living[0].Id.ToString());
+                if (advertResult == null)
+                {
+                    var result = _advertManager.Add(advert);
+                    return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
+                }
+                
             }
-
-
-
-
-
-
-            
             return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
+
 
         }
 
