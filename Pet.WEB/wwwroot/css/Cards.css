@@ -1,3 +1,4 @@
+
 .cardcontainer {
     width: 200px;
     height: 300px;
@@ -7,12 +8,12 @@
     transition: 0.3s;
 }
 
-    .cardcontainer:hover {
-        box-shadow: 0 0 45px gray;
-    }
+.cardcontainer:hover {
+    box-shadow: 0 0 30px gray;
+}
 
 .photo {
-    height: 180px;
+    height: 200px;
     width: 100%;
 }
 
@@ -30,21 +31,10 @@
     top: -33px;
 }
 
-.photos {
-    width: 90px;
-    height: 30px;
-    background-color: #E74C3C;
-    color: white;
-    position: relative;
-    top: -30px;
-    padding-left: 10px;
-    font-size: 20px;
-}
-
 .txt4 {
     font-size: 14px;
     position: relative;
-    top: 33px;
+    top: 35px;
 }
 
 .txt5 {
@@ -54,79 +44,22 @@
     font-size: 12px;
 }
 
-.txt2 {
-    position: relative;
-    top: 5px;
-}
-
-/*.cardcontainer:hover > .photo {
-    height: 200px;
-    animation: move1 0.5s ease both;
-}*/
-
-/*@keyframes move1 {
-    0% {
-        height: 300px
-    }
-
-    100% {
-        height: 200px
-    }
-}*/
-
-/*.cardcontainer:hover > .content {
-    height: 200px;
-}*/
-
 .footerlar {
-    width: 80%;
+    width: 90%;
     height: 50px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
     position: relative;
     top: -100px;
+    float:left;
+    
 }
 
 .btn {
     border-color: black;
     position: relative;
-    top: 10px;
-}
-
-#heart {
-    cursor: pointer;
-}
-
-.like {
-    float: right;
-    font-size: 18px;
-    position: relative;
     top: 20px;
-    color: #333333;
 }
 
-.fa-gratipay {
-    margin-right: 10px;
-    transition: 0.1s;
-}
 
-    .fa-gratipay:hover {
-        color: #E74C3C;
-    }
-
-.txt3 {
-    color: gray;
-    position: relative;
-    top: 10px;
-    font-size: 7px;
-}
-
-.comments {
-    float: right;
-    cursor: pointer;
-}
-
-.fa-clock, .fa-comments {
-    margin-right: 0px;
-}
