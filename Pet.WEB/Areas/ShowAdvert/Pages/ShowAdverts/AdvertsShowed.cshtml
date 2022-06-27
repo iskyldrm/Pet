@@ -2,28 +2,105 @@
 @model Pet.WEB.Areas.ShowAdvert.Pages.ShowAdverts.AdvertsShowedModel
 @{
 }
-<link  href="/css/Cards.css"/>
- <div class="container mb-2">
-        <div class="cardcontainer border-1 border-success">
-            <div class="photo">
-                @foreach (var item in Model.Adverts)
+<style>
+
+    .cardcontainer {
+        width: 200px;
+        height: 300px;
+        margin-left: 25px;
+        margin-right: auto;
+        margin-top:-30px;
+        margin-bottom:20px;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+        .cardcontainer:hover {
+            box-shadow: 0 0 30px gray;
+        }
+
+    .photo {
+        height: 200px;
+        width: 100%;
+    }
+
+        .photo img {
+            height: 100%;
+            width: 100%;
+        }
+
+    .content {
+        width: 90%;
+        height: 140px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: -28px;
+    }
+
+    .txt4 {
+        font-size: 14px;
+        position: relative;
+        top: 30px;
+    }
+
+    .txt5 {
+        position: relative;
+        top: 18px;
+        color: #E74C3C;
+        font-size: 12px;
+    }
+
+    .footerlar {
+        width: 90%;
+        height: 50px;
+        margin-left: 10px;
+        margin-right: auto;
+        position: relative;
+        top: -100px;
+        float: left;
+    }
+
+    .btn {
+        border-color: black;
+        position: relative;
+        top: 10px;
+    }
+
+</style>
+    <table>
+
+
+        <tbody>
+            <tr>
+            @{
+                var sayac = 0;
+
+                foreach (var item in Model.Adverts)
                 {
-                    <img src="@item.Url">
-                
+                    sayac++;
+                    <td class="pl-3">
+                        <div class=" cnntainer mb-2">
+                            <div class="cardcontainer border-1 border-success">
+                                <div class="photo">
+                                    <img src="@item.Url">
+
+                                </div>
+                                <div class="content">
+
+                                    <p class="txt4">@item.LivingName.ToString()</p>
+                                    <p class="txt5">@item.AdvertNo</p>
+                                </div>
+                                <div class="footerlar">
+                                    <p><a class="btn btn-outline-success" href="#">Detaylar</a><a id="heart"></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 }
-            </div>
-            <div class="content">
-                @foreach (var item in Model.Adverts)
-                {
-                    <p class="txt4">@item.LivingName</p>
-                    <p class="txt5">@item.AdvertNo</p>
+                    
                 }
-                
-            </div>
-                
-            <div class="footerlar">
-                <p><a class="btn btn-outline-success" href="#">Detaylar</a><a id="heart"></a></p>
-               
-            </div>
-        </div>
-    </div>
+                </tr>
+            
+        </tbody>
+    </table>
