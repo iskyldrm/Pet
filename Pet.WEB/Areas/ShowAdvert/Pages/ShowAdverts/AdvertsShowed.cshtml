@@ -6,12 +6,21 @@
  <div class="container mb-2">
         <div class="cardcontainer border-1 border-success">
             <div class="photo">
-                <img src="~/dist/img/Cat&Dog.png">
+                @foreach (var item in Model.Adverts)
+                {
+                    <img src="@item.Url">
+                
+                }
             </div>
             <div class="content">
-                <p class="txt4">City Lights In Newyork</p>
-                <p class="txt5">A city that never</p>
+                @foreach (var item in Model.Adverts)
+                {
+                    <p class="txt4">@item.LivingName</p>
+                    <p class="txt5">@item.AdvertNo</p>
+                }
+                
             </div>
+                
             <div class="footerlar">
                 <p><a class="btn btn-outline-success" href="#">Detaylar</a><a id="heart"></a></p>
                

@@ -178,13 +178,20 @@ namespace Pet.WEB.Areas.Adverts.Pages.UserAdvertAdd
             advert.LivingId = living[0].Id;
             
             
+            
 
             if (ModelState.IsValid)
             {
                 var advertResult = _advertManager.GetAll(p => p.LivingId.ToString() == living[0].Id.ToString());
-                if (advertResult == null)
+                if (advertResult.Count == 0)
                 {
                     var result = _advertManager.Add(advert);
+                    if (result>0)
+                    {
+                        var ýmage = _ýmageManager.GetAll(p => p.Living.Id == advert.LivingId);
+                        ýmage[0].Advert = advert;
+                        var resultImageUpdate = _ýmageManager.Update(ýmage[0]);
+                    }
                     return RedirectToPage("/UserProfile/MyProfile", new { area = "Profile" });
                 }
                 
