@@ -74,13 +74,17 @@ namespace Pet.WEB.Areas.ShowAdvert.Pages.ShowAdverts
 
         public async Task OnGetAsync()
         {
-            List<AdvertDTO> Advertler = new List<AdvertDTO>();
-            AdvertDTO advertDTO = new AdvertDTO();
+            
+            Adverts = new List<AdvertDTO>();
+            
             var resultAdvert =  _advertManager.GetAll();
             var resultLiving = _livingManager.GetAll(); 
 
             for (int i = 0; i < resultAdvert.Count; i++)
             {
+
+                //Halletim haberin olsun her yeni itemde yeni obje newlemek lazým
+                AdvertDTO advertDTO = new AdvertDTO();
                 var resultImage = _ýmageManager.GetAll(p => p.Advert.Id == resultAdvert[i].Id);
 
                     advertDTO.AdvertNo = resultAdvert[i].AdvertNo;
@@ -89,10 +93,8 @@ namespace Pet.WEB.Areas.ShowAdvert.Pages.ShowAdverts
                     advertDTO.LivingName = resultLiving[i].LivingName;
                     advertDTO.Url = resultImage[0].Url;
 
-                Advertler.Add(advertDTO);
+                Adverts.Add(advertDTO);
             }
-
-            Adverts = Advertler.ToList();
         }
     }
 }

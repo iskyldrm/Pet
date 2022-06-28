@@ -74,13 +74,10 @@
         <tbody>
             <tr>
             @{
-                var sayac = 0;
-
                 foreach (var item in Model.Adverts)
                 {
-                    sayac++;
                     <td class="pl-3">
-                        <div class=" cnntainer mb-2">
+                        <div class=" container mb-2">
                             <div class="cardcontainer border-1 border-success">
                                 <div class="photo">
                                     <img src="@item.Url">
@@ -99,8 +96,8 @@
                     </td>
                 }
                     
-                }
-                </tr>
+            }
+            </tr>
             
         </tbody>
     </table>
